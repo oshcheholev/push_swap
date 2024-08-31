@@ -6,7 +6,7 @@
 /*   By: oshcheho <oshcheho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 14:46:17 by oshcheho          #+#    #+#             */
-/*   Updated: 2024/08/28 14:53:08 by oshcheho         ###   ########.fr       */
+/*   Updated: 2024/08/31 18:47:05 by oshcheho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void test_print(t_ps *ps)
 	i = 0;
 	while (i < ps->a_len)
 	{
-		printf("AAAA i %d ,   stack[i] %d\n", i, ps->stack_a[i]);
+		printf("AAAA i %d ,   stack[i] %d\n", i, ps->stack_a[i].value);
 		i++;
 	}
 	printf("\n");
@@ -27,18 +27,19 @@ void test_print(t_ps *ps)
 	i = 0;
 	while (i < ps->b_len)
 	{
-		printf("BBBB i %d ,   stack[i] %d\n", i, ps->stack_b[i]);
+		printf("BBBB i %d ,   stack[i] %d\n", i, ps->stack_b[i].value);
 		i++;
 	}
 	printf("\n");
 }
 
-void err_exit(t_ps *ps)
+void err_exit(t_ps *ps, char *msg)
 {
 	int i;
 
 	i = 0;
 	write(1, "Error\n", 6);
+	printf("%s", msg);
 	
 	if (ps->stack_a)
 	{
@@ -67,11 +68,11 @@ int	ft_atoi_new(const char *nptr, t_ps *ps)
 	while (i < (int)ft_strlen(nptr))
 	{
 		if ((nptr[i] < '0' || nptr[i] > '9') && nptr[i] != '-' && nptr[i] != '+')
-			err_exit(ps);
+			err_exit(ps, "atoi1");
 		if ((nptr[i] >= '0' && nptr[i] <= '9') && (nptr[i + 1] == '-' || nptr[i + 1] == '+'))
-			err_exit(ps);
+			err_exit(ps, "atoi2");
 		if ((nptr[i + 1] < '0' || nptr[i + 1] > '9') && (nptr[i] == '-' || nptr[i] == '+'))
-			err_exit(ps);
+			err_exit(ps, "atoi3");
 		i++;
 	}
 	i = 0;
@@ -85,9 +86,9 @@ int	ft_atoi_new(const char *nptr, t_ps *ps)
 	while (nptr[i] >= '0' && nptr[i] <= '9')
 	{
 		if (sign == 1 && res > (INT_MAX - (nptr[i] - '0')) / 10)
-			err_exit(ps);
+			err_exit(ps, "atoi5");
 		if (sign == -1 && res > (-(INT_MIN + (nptr[i] - '0')) / 10))
-			err_exit(ps);
+			err_exit(ps, "atoi6");
 //		printf("res %d\n", res);
 		res = res * 10 + nptr[i] - '0';
 		i++;
@@ -108,21 +109,21 @@ int	check_input(char *str, t_ps *ps)
 		{
 			if (str[i] == ' ')
 				if (str[i + 1] == ' ' || str[i + 1] == '\0')
-					err_exit(ps);
+					err_exit(ps, "ch1");
 				else
 					word_count++;
 			else
-				err_exit(ps);
+				err_exit(ps, "ch2");
 		}
 		if ((str[i] == '-' || str[i] == '-') && (str[i + 1] < '0' || str[i + 1] > '9'))
-			err_exit(ps);
+			err_exit(ps, "c3");
 		i++;
 	}
-	printf("wc check  %d\n", word_count);
+	// printf("wc check  %d\n", word_count);
 	return (word_count + 1);
 }
 
-void check_dup(int *stack, t_ps *ps)
+void check_dup(t_ps *ps)
 {
 	int i;
 	int j;
@@ -133,8 +134,8 @@ void check_dup(int *stack, t_ps *ps)
 		j = i + 1;
 		while(j < ps->a_len)
 		{
-			if (stack[i] == stack[j])
-				err_exit(ps);
+			if (ps->stack_a[i].value == ps->stack_a[j].value)
+				err_exit(ps, "d1");
 			j++;
 		}
 		i++;
@@ -150,13 +151,13 @@ void	process_input(t_ps *ps, char *str)
 	ps->a_len = check_input(str, ps);
 	ps->stack_a = malloc(ps->a_len * sizeof(int));
 	if (!ps->stack_a)
-		err_exit(ps);
+		err_exit(ps, "pr1");
 	array = ft_split(str, ' ');
 	if (!array)
 		return (free(array));
 	while (array[i] != NULL)
 	{
-		ps->stack_a[i] = ft_atoi_new(array[i], ps);
+		ps->stack_a[i].value = ft_atoi_new(array[i], ps);
 		i++;
 	}
 	i = 0;
@@ -176,18 +177,20 @@ void arr_or_not(t_ps *ps, int argc, char **argv)
 	if (argc == 2)
 		process_input(ps, argv[1]);
 	else if (argc == 1)
-		err_exit(ps);
+		err_exit(ps, "arg");
 	else
 	{
-		ps->stack_a = malloc(argc * sizeof(int));
+		ps->stack_a = malloc(argc * sizeof(t_elem));
 		if (!ps->stack_a)
-			err_exit(ps);
+			err_exit(ps, "m");
 		while (argv[i + 1])
 		{
-			ps->stack_a[i] = ft_atoi_new(argv[i + 1], ps);
+			ps->stack_a[i].value = ft_atoi_new(argv[i + 1], ps);
 			i++;
 		}
 	}
-	test_print(ps);
-	check_dup(ps->stack_a, ps);
+	i = 0;
+
+//	test_print(ps);
+	check_dup(ps);
 }

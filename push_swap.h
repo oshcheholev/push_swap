@@ -6,7 +6,7 @@
 /*   By: oshcheho <oshcheho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 15:03:54 by oshcheho          #+#    #+#             */
-/*   Updated: 2024/08/28 15:55:41 by oshcheho         ###   ########.fr       */
+/*   Updated: 2024/08/31 17:49:38 by oshcheho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,24 +19,31 @@
 # include <stdio.h>
 # include "./libft/libft.h"
 
+typedef struct s_elem
+{
+	int		value;
+	int		place;
+	int		price;
+	int		price_top;
+	int		price_bot;
+}			t_elem;
+
 typedef struct s_ps
 {
 	int		min;
 	int		max;
 	int		a_len;
 	int		b_len;
-	int		*stack_a;
-	int		*stack_b;
+	t_elem	*stack_a;
+	t_elem	*stack_b;
 }			t_ps;
-
-
 
 int		ft_atoi(const char *nptr);
 int		ft_atoi_new(const char *nptr, t_ps *ps);
 void	process_input(t_ps *ps, char *str);
 void	arr_or_not(t_ps *ps, int argc, char **argv);
 void	test_print(t_ps *ps);
-void	err_exit(t_ps *ps);
+void	err_exit(t_ps *ps, char *msg);
 void	sa(t_ps *ps);
 void	sb(t_ps *ps);
 void	ss(t_ps *ps);
@@ -49,6 +56,10 @@ void	rra(t_ps *ps);
 void	rrb(t_ps *ps);
 void	rrr(t_ps *ps);
 void	my_sort(t_ps *ps);
-
+int		*temp_sort_arr(t_ps *ps);
+void	assign_place(t_ps *ps);
+void	push_back(t_ps *ps);
+void find_element (t_ps *ps, int i);
+void start_sort(t_ps *ps);
 
 #endif

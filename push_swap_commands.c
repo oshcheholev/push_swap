@@ -6,7 +6,7 @@
 /*   By: oshcheho <oshcheho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/27 15:10:25 by oshcheho          #+#    #+#             */
-/*   Updated: 2024/08/27 18:32:16 by oshcheho         ###   ########.fr       */
+/*   Updated: 2024/08/31 15:22:40 by oshcheho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,9 @@
 
 void sa(t_ps *ps)
 {
-	int temp;
+	t_elem temp;
 	
+	write(1, "sa\n", 3);
 	if (ps->a_len > 1)
 	{
 		temp = ps->stack_a[0];
@@ -26,8 +27,9 @@ void sa(t_ps *ps)
 
 void sb(t_ps *ps)
 {
-	int temp;
+	t_elem temp;
 	
+	write(1, "sb\n", 3);
 	if (ps->b_len > 1)
 	{
 		temp = ps->stack_b[0];
@@ -38,19 +40,20 @@ void sb(t_ps *ps)
 
 void ss(t_ps *ps)
 {
+	write(1, "ss\n", 3);
 	sa(ps);
 	sb(ps);
 }
 
 void rm_from_b_for_pa(t_ps *ps)
 {
-	int *temp;
+	t_elem *temp;
 	int i;
 	
 	i = 0;
-	temp = malloc((ps->b_len - 1) * sizeof(int));
+	temp = malloc((ps->b_len - 1) * sizeof(t_elem));
 	if (!temp)
-		err_exit(ps);
+		err_exit(ps, "");
 	while (i < ps->b_len - 1)
 	{
 		temp[i] = ps->stack_b[i + 1];
@@ -63,13 +66,13 @@ void rm_from_b_for_pa(t_ps *ps)
 
 void rm_from_a_for_pb(t_ps *ps)
 {
-	int *temp;
+	t_elem *temp;
 	int i;
 	
 	i = 0;
-	temp = malloc((ps->a_len - 1) * sizeof(int));
+	temp = malloc((ps->a_len - 1) * sizeof(t_elem));
 	if (!temp)
-		err_exit(ps);
+		err_exit(ps, "");
 	while (i < ps->a_len - 1)
 	{
 		temp[i] = ps->stack_a[i + 1];
@@ -82,14 +85,14 @@ void rm_from_a_for_pb(t_ps *ps)
 
 void pa(t_ps *ps)
 {
-	int *temp;
+	t_elem *temp;
 	int i;
 	
-	printf("PA\n\n");
+	write(1, "pa\n", 3);
 	i = 1;
-	temp = malloc((ps->a_len + 1) * sizeof(int));
+	temp = malloc((ps->a_len + 1) * sizeof(t_elem));
 	if (!temp)
-		err_exit(ps);
+		err_exit(ps, "");
 	temp[0] = ps->stack_b[0];
 	while (i <= ps->a_len)
 	{
@@ -104,19 +107,18 @@ void pa(t_ps *ps)
 
 void pb(t_ps *ps)
 {
-	int *temp;
+	t_elem *temp;
 	int i;
 	
-	printf("PB\n\n");
+	write(1, "pb\n", 3);
 	i = 1;
-	temp = malloc((ps->b_len + 1) * sizeof(int));
+	temp = malloc((ps->b_len + 1) * sizeof(t_elem));
 	if (!temp)
-		err_exit(ps);
+		err_exit(ps, "");
 	temp[0] = ps->stack_a[0];
 	while (i <= ps->b_len)
 	{
 		temp[i] = ps->stack_b[i - 1];
-		// printf("t %d", temp[i]);
 		i++;
 	}
 	ps->b_len++;
@@ -127,10 +129,10 @@ void pb(t_ps *ps)
 
 void ra(t_ps *ps)
 {
-	int temp;
+	t_elem temp;
 	int i;
 	
-	printf("RA\n\n");
+	write(1, "ra\n", 3);
 	i = 0;
 	temp = ps->stack_a[0];
 	while (i < ps->a_len - 1)
@@ -143,10 +145,10 @@ void ra(t_ps *ps)
 
 void rb(t_ps *ps)
 {
-	int temp;
+	t_elem temp;
 	int i;
-	
-	printf("RB\n\n");
+
+	write(1, "rb\n", 3);
 	i = 0;
 	temp = ps->stack_b[0];
 	while (i < ps->b_len - 1)
@@ -159,16 +161,17 @@ void rb(t_ps *ps)
 
 void rr(t_ps *ps)
 {
+	write(1, "rr\n", 3);
 	ra(ps);
 	rb(ps);
 }
 
 void rra(t_ps *ps)
 {
-	int temp;
+	t_elem temp;
 	int i;
-	
-	printf("RRA\n\n");
+
+	write(1, "rra\n", 4);
 	i = ps->a_len - 1;
 	temp = ps->stack_a[ps->a_len - 1];
 	while (i > 0)
@@ -181,10 +184,10 @@ void rra(t_ps *ps)
 
 void rrb(t_ps *ps)
 {
-	int temp;
+	t_elem temp;
 	int i;
 	
-	printf("RRB\n\n");
+	write(1, "rrb\n", 4);
 	i = ps->b_len - 1;
 	temp = ps->stack_b[ps->b_len - 1];
 	while (i > 0)
@@ -197,6 +200,7 @@ void rrb(t_ps *ps)
 
 void rrr(t_ps *ps)
 {
+	write(1, "rrr\n", 4);
 	rra(ps);
 	rrb(ps);
 }

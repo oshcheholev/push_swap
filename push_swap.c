@@ -6,7 +6,7 @@
 /*   By: oshcheho <oshcheho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 14:44:56 by oshcheho          #+#    #+#             */
-/*   Updated: 2024/08/28 15:56:00 by oshcheho         ###   ########.fr       */
+/*   Updated: 2024/08/31 16:25:55 by oshcheho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,50 +31,22 @@ int	main(int argc, char **argv)
 	
 	arr_or_not(&ps, argc, argv);
 	ps.stack_b = NULL;
+	i = 0;
+	// while (i < ps.a_len)
+	// {
+	// 	printf("1AAAAAAAAAAAA %d\n", ps.stack_a[i].value);
+	// 	i++;
+	// }
 
-	my_sort(&ps);
-	// sa(&ps);
+	//my_sort(&ps);
+//	temp_sort_arr(&ps);
+	assign_place(&ps);
+//	test_print(&ps);
+//	push_back(&ps);
+//	find_element(&ps, 0);
+	start_sort(&ps);
 	
-	// pb(&ps);
-	// pb(&ps);
-	// pb(&ps);
-	
-	// ra(&ps);
-	// rb(&ps);
-	
-	// rra(&ps);
-	// rrb(&ps);
-	
-	// sa(&ps);
 
-	// pa(&ps);
-	// pa(&ps);
-	// pa(&ps);
-
-	test_print(&ps);
-	
-	// pb(&ps);
-	// test_print(&ps);
-
-	// pb(&ps);
-	// test_print(&ps);
-
-	// ra(&ps);
-	// test_print(&ps);
-
-	// rb(&ps);
-	// test_print(&ps);
-	// rr(&ps);
-	// test_print(&ps);
-
-	// rra(&ps);
-	// test_print(&ps);
-	// rrb(&ps);
-	// test_print(&ps);
-
-	// rrr(&ps);
-	// test_print(&ps);
-	
 	free(ps.stack_a);
 	free(ps.stack_b);
 

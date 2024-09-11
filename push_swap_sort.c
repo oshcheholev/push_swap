@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap_sort.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oshcheho <oshcheho@student.42.fr>          +#+  +:+       +#+        */
+/*   By: oshcheho <oshcheho@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/28 15:08:12 by oshcheho          #+#    #+#             */
-/*   Updated: 2024/08/31 18:49:49 by oshcheho         ###   ########.fr       */
+/*   Updated: 2024/09/10 16:12:15 by oshcheho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -156,6 +156,8 @@ int	*create_temp_arr(t_ps *ps)
 
 	i = 0;
 	res = malloc(ps->a_len * sizeof(int));
+	if (!res)
+		return (free(res), NULL);
 	while (i < ps->a_len)
 	{
 		res[i] = ps->stack_a[i].value;
@@ -173,11 +175,11 @@ int *temp_sort_arr(t_ps *ps)
 
 	res = create_temp_arr(ps);
 	i = 0;
-	while (i < ps->a_len)
-	{
-		printf("yyy   %d   %d\n", ps->a_len, ps->stack_a[i].value);
-		i++;
-	}
+	// while (i < ps->a_len)
+	// {
+	// 	printf("temp sort   %d   %d\n", ps->a_len, ps->stack_a[i].value);
+	// 	i++;
+	// }
 	if (!res)
 		return (free(res), NULL);
 	i = ps->a_len - 1;
@@ -186,7 +188,7 @@ int *temp_sort_arr(t_ps *ps)
 		j = 0;
 		while (j < i)
 		{
-			printf("aaa  %d %d %d %d \n", i, j, res[j], res[j + 1]);
+			// printf("aaa  %d %d %d %d \n", i, j, res[j], res[j + 1]);
 			if (res[j] > res[j + 1])
 			{
 				temp = res[j];
@@ -232,44 +234,26 @@ void assign_place(t_ps *ps)
 	// }
 }
 
-void	main_sort(t_ps *ps, int i)
+void	main_sort(t_ps *ps, int i, int top_or_bot)
 {
-	// int i;
 	int j;
-	int k;
-	
-	// i = 0;
-	k = 0;
-//	while (i < (ps->a_len - 1))
-//	{
-		j = 0;
-		while(k < ps->a_len)
+
+	j = 0;
+	while(j < i)
+	{
+		if (top_or_bot == 0)
 		{
-//		printf("k  %d   i %d  value %d   place  %d\n", k, i, ps->stack_a[k].value, ps->stack_a[k].place);
-			
-			if (ps->stack_a[k].place == i)
-			
-			{
-//		printf("a[]k  %d   i %d\n", ps->stack_a[k].value, i);
-				while (j < k)
-				{
-					ra(ps);
-					j++;
-				}
-				pb(ps);
-//				opers++;	
-//				break;
-			}
-				k++;
+				ra(ps);
+				j++;
 		}
-		i++;
-//		main_sort(ps, i);
-		
-//		i++;
-//	}
-//		main_sort(ps);
-	
-}
+		else if (top_or_bot == 1)
+		{
+				rra(ps);
+				j++;
+		}
+	}
+			pb(ps);
+	}
 
 void	push_back(t_ps *ps)
 {
@@ -294,12 +278,12 @@ void	push_back(t_ps *ps)
 		pa(ps);
 	}
 
-	// i = 0;
-	// while (i < ps->a_len)
-	// {
-	// 	printf("a after push  value  %d   place %d\n", ps->stack_a[i].value, ps->stack_a[i].place);
-	// 	i++;
-	// }
+	i = 0;
+	while (i < ps->a_len)
+	{
+		printf("a after push  value  %d   place %d\n", ps->stack_a[i].value, ps->stack_a[i].place);
+		i++;
+	}
 
 }
 
@@ -312,61 +296,156 @@ void init_price(t_ps *ps)
 	{
 		ps->stack_a[i].price_top = 0;
 		ps->stack_a[i].price_bot = 0;
+	printf ("init  %d    %d price \n", ps->stack_a[i].price_top, ps->stack_a[i].price_bot);
+
 		i++;
 	}
+}
+void find_min_place (t_ps *ps)
+{
+	int i;
+	int top_or_bot;
+	int min_price;
+
+	i = 0;
+	top_or_bot = 0;
+	min_price = ps->stack_a[0].price_top;
+	while (i < ps->a_len)
+	{
+		if (ps->stack_a[i].price_top < min_price)
+		{
+			min_price = ps->stack_a[i].price_top;
+			top_or_bot = 0;
+		}
+		else if (ps->stack_a[i].price_bot < min_price)
+		{
+			min_price = ps->stack_a[i].price_bot;
+			top_or_bot = 1;
+		}
+		i++;
+	} 
+	main_sort(ps, min_price, top_or_bot);
 }
 
 void find_element (t_ps *ps, int i)
 {
 	int j;
-	int len;
-	int price;
-	int k;
-	
+	int price_top;
+	int price_bot;
+		
+	assign_place(ps);
 	init_price(ps);
-	k = 0;
-	price = 0;
-	len = ps->a_len / 2;
-	while(k < len)
-	{
-		price = ps->stack_a[k].place - i + k;
-		ps->stack_a[k].price_top = price;
-		price = ps->stack_a[ps->a_len - k].place - i + k + 1;
-		ps->stack_a[ps->a_len - k].price_bot = price;
-//		printf ("k  %d  price  %d\n", k, price);
-		k++;
-	}
-	i = 0;
-	while (i < ps->a_len - 1)
-	{
-		printf ("price_top  %d   price_bot  %d\n", ps->stack_a[i].price_top, ps->stack_a[i].price_bot);
-		i++;
-	}
+	price_top = 0;
+	price_bot = 0;
 
-	i = 0;
-	 
-	if (ps->a_len == 1)
+	j = 0;
+	while (j < ps->a_len)
 	{
-//		printf("opers %d\n", i);
-		return ;
-	}
-	
-	j = ps->a_len - 1;
+		price_top = ps->stack_a[j].place + j + i;
+		ps->stack_a[j].price_top = price_top;
+		price_bot = ps->a_len - ps->stack_a[j].place - i;
+		ps->stack_a[j].price_bot = price_bot;
+		printf("val %d place %d  price_top %d price_bot %d\n", ps->stack_a[j].value, ps->stack_a[j].place, ps->stack_a[j].price_top, ps->stack_a[j].price_bot);
 
-	if (ps->stack_a[0].place > ps->stack_a[1].place)
-		sa(ps);
-	if (ps->stack_a[0].place > ps->stack_a[j].place)
-		rra(ps);
-	main_sort(ps, i);
-	i++;
-	find_element(ps, i);
+		j++;
+	}
+	while (ps->a_len > 1)
+	{
+		printf("a_len  %d\n", ps->a_len);
+	}
+//		find_min_place(ps);
 }
+
+void push_to_b(t_ps *ps, int count)
+{
+	int i;
+	int j;
+
+	j = 0;
+	while (j < ps->a_len)
+	{
+		printf("val %d place %d count %d\n", ps->stack_a[j].value, ps->stack_a[j].place, count);
+		j++;
+	}
+	i = 0;
+	j = 0;
+	while (ps->stack_a[i].place != count)
+		i++;
+	while (ps->stack_a[ps->a_len - j - 1].place != count)
+	{
+		printf("place %d   j %d\n", ps->stack_a[ps->a_len - j - 1].place, j);
+		j++;
+	}
+	printf("i %d   j %d\n", i, j);
+	
+	if (i <= j)
+	{
+		while (i > 0)
+		{
+			ra(ps);
+			i--;
+		}
+		printf("pushing i val %d place %d\n", ps->stack_a[0].value, ps->stack_a[0].place);
+		pb(ps);
+	}
+	else
+	{
+		while (j >= 0)
+		{
+			rra(ps);
+			j--;
+		}
+		printf("pushing j val %d place %d\n", ps->stack_a[0].value, ps->stack_a[0].place);
+		pb(ps);
+//		rb(ps);
+	}
+	j = 0;
+	while (j < ps->a_len)
+	{
+		printf("remained val %d place %d count %d\n", ps->stack_a[j].value, ps->stack_a[j].place, count);
+		j++;
+	}
+
+	j = 0;
+	while (j < ps->b_len)
+	{
+		printf("in b val %d place %d count %d\n", ps->stack_b[j].value, ps->stack_b[j].place, count);
+		j++;
+	}
+
+
+//	ra(ps);
+}
+
+// void push_to_b_2(t_ps *ps)
+// {
+// 	int	i;
+	
+// 	i = 0;
+// 	while (i < ps->a_len)
+// 	{
+		
+// 	}
+// 	ps->to_move = ps->a_len / 2;
+	
+	
+// }
 
 void start_sort(t_ps *ps)
 {
 	int i;
 	
 	i = 0;
-	find_element(ps, 0);
+	while (ps->a_len > 2)
+	{
+		push_to_b(ps, i);
+		i++;		
+	}
+	printf("a0 %d   a1 %d\n", ps->stack_a[0].value, ps->stack_a[1].value);
+	if (ps->stack_a[0].value > ps->stack_a[1].value)
+		ra(ps);
+	
+	
+//	find_element(ps, 0);
 	push_back(ps);	
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap_check.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oshcheho <oshcheho@student.42.fr>          +#+  +:+       +#+        */
+/*   By: oshcheho <oshcheho@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 14:46:17 by oshcheho          #+#    #+#             */
-/*   Updated: 2024/08/31 18:47:05 by oshcheho         ###   ########.fr       */
+/*   Updated: 2024/09/10 14:09:38 by oshcheho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,8 @@ void err_exit(t_ps *ps, char *msg)
 	int i;
 
 	i = 0;
-	write(1, "Error\n", 6);
-	printf("%s", msg);
+	write(1, "Error 1\n", 8);
+	printf("%s\n", msg);
 	
 	if (ps->stack_a)
 	{
@@ -87,10 +87,10 @@ int	ft_atoi_new(const char *nptr, t_ps *ps)
 	{
 		if (sign == 1 && res > (INT_MAX - (nptr[i] - '0')) / 10)
 			err_exit(ps, "atoi5");
-		if (sign == -1 && res > (-(INT_MIN + (nptr[i] - '0')) / 10))
+		if (sign == -1 && res > (INT_MAX - (nptr[i] - '0')) / 10)
 			err_exit(ps, "atoi6");
-//		printf("res %d\n", res);
 		res = res * 10 + nptr[i] - '0';
+		printf("res %d\n", res);
 		i++;
 	}
 	return (res * sign);
@@ -190,7 +190,7 @@ void arr_or_not(t_ps *ps, int argc, char **argv)
 		}
 	}
 	i = 0;
-
+	printf("sss %d \n", ps->a_len);
 //	test_print(ps);
 	check_dup(ps);
 }

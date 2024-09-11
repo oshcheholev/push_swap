@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oshcheho <oshcheho@student.42.fr>          +#+  +:+       +#+        */
+/*   By: oshcheho <oshcheho@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 14:44:56 by oshcheho          #+#    #+#             */
-/*   Updated: 2024/08/31 16:25:55 by oshcheho         ###   ########.fr       */
+/*   Updated: 2024/09/10 11:35:15 by oshcheho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ int	main(int argc, char **argv)
 	char **if_arr;
 	t_ps	ps;
 
+	ps.opers = 0;
 	if_arr = NULL;
 	ps.stack_a = NULL;
 	ps.stack_b = NULL;
@@ -46,6 +47,7 @@ int	main(int argc, char **argv)
 //	find_element(&ps, 0);
 	start_sort(&ps);
 	
+	printf("opers: %d\n", ps.opers);
 
 	free(ps.stack_a);
 	free(ps.stack_b);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap_commands.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oshcheho <oshcheho@student.42.fr>          +#+  +:+       +#+        */
+/*   By: oshcheho <oshcheho@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/27 15:10:25 by oshcheho          #+#    #+#             */
-/*   Updated: 2024/08/31 15:22:40 by oshcheho         ###   ########.fr       */
+/*   Updated: 2024/09/10 13:31:04 by oshcheho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ void sa(t_ps *ps)
 		temp = ps->stack_a[0];
 		ps->stack_a[0] = ps->stack_a[1];
 		ps->stack_a[1] = temp;
+		ps->opers++;
 	}
 }
 
@@ -35,6 +36,7 @@ void sb(t_ps *ps)
 		temp = ps->stack_b[0];
 		ps->stack_b[0] = ps->stack_b[1];
 		ps->stack_b[1] = temp;
+		ps->opers++;
 	}
 }
 
@@ -43,6 +45,7 @@ void ss(t_ps *ps)
 	write(1, "ss\n", 3);
 	sa(ps);
 	sb(ps);
+	ps->opers++;
 }
 
 void rm_from_b_for_pa(t_ps *ps)
@@ -51,17 +54,20 @@ void rm_from_b_for_pa(t_ps *ps)
 	int i;
 	
 	i = 0;
-	temp = malloc((ps->b_len - 1) * sizeof(t_elem));
-	if (!temp)
-		err_exit(ps, "");
-	while (i < ps->b_len - 1)
+	if (ps->b_len > 0)
 	{
-		temp[i] = ps->stack_b[i + 1];
-		i++;
+		temp = malloc((ps->b_len - 1) * sizeof(t_elem));
+		if (!temp)
+			err_exit(ps, "rm b");
+		while (i < ps->b_len - 1)
+		{
+			temp[i] = ps->stack_b[i + 1];
+			i++;
+		}
+		ps->b_len--;
+		free(ps->stack_b);
+		ps->stack_b = temp;
 	}
-	ps->b_len--;
-	free(ps->stack_b);
-	ps->stack_b = temp;
 }
 
 void rm_from_a_for_pb(t_ps *ps)
@@ -70,17 +76,20 @@ void rm_from_a_for_pb(t_ps *ps)
 	int i;
 	
 	i = 0;
-	temp = malloc((ps->a_len - 1) * sizeof(t_elem));
-	if (!temp)
-		err_exit(ps, "");
-	while (i < ps->a_len - 1)
+	if (ps->a_len > 0)
 	{
-		temp[i] = ps->stack_a[i + 1];
-		i++;
+		temp = malloc((ps->a_len - 1) * sizeof(t_elem));
+		if (!temp)
+			err_exit(ps, "rm a");
+		while (i < ps->a_len - 1)
+		{
+			temp[i] = ps->stack_a[i + 1];
+			i++;
+		}
+		ps->a_len--;
+		free(ps->stack_a);
+		ps->stack_a = temp;
 	}
-	ps->a_len--;
-	free(ps->stack_a);
-	ps->stack_a = temp;
 }
 
 void pa(t_ps *ps)
@@ -88,21 +97,26 @@ void pa(t_ps *ps)
 	t_elem *temp;
 	int i;
 	
+	
 	write(1, "pa\n", 3);
-	i = 1;
-	temp = malloc((ps->a_len + 1) * sizeof(t_elem));
-	if (!temp)
-		err_exit(ps, "");
-	temp[0] = ps->stack_b[0];
-	while (i <= ps->a_len)
+	if (ps->b_len > 0)
 	{
-		temp[i] = ps->stack_a[i - 1];
-		i++;
+		i = 1;
+		temp = malloc((ps->a_len + 1) * sizeof(t_elem));
+		if (!temp)
+			err_exit(ps, "pa");
+		temp[0] = ps->stack_b[0];
+		while (i <= ps->a_len)
+		{
+			temp[i] = ps->stack_a[i - 1];
+			i++;
+		}
+		ps->a_len++;
+		free(ps->stack_a);
+		ps->stack_a = temp;
+		rm_from_b_for_pa(ps);
+		ps->opers++;
 	}
-	ps->a_len++;
-	free(ps->stack_a);
-	ps->stack_a = temp;
-	rm_from_b_for_pa(ps);
 }
 
 void pb(t_ps *ps)
@@ -111,20 +125,24 @@ void pb(t_ps *ps)
 	int i;
 	
 	write(1, "pb\n", 3);
-	i = 1;
-	temp = malloc((ps->b_len + 1) * sizeof(t_elem));
-	if (!temp)
-		err_exit(ps, "");
-	temp[0] = ps->stack_a[0];
-	while (i <= ps->b_len)
+	if (ps->a_len > 0)
 	{
-		temp[i] = ps->stack_b[i - 1];
-		i++;
+		i = 1;
+		temp = malloc((ps->b_len + 1) * sizeof(t_elem));
+		if (!temp)
+			err_exit(ps, "pb");
+		temp[0] = ps->stack_a[0];
+		while (i <= ps->b_len)
+		{
+			temp[i] = ps->stack_b[i - 1];
+			i++;
+		}
+		ps->b_len++;
+		free(ps->stack_b);
+		ps->stack_b = temp;
+		rm_from_a_for_pb(ps);
+		ps->opers++;
 	}
-	ps->b_len++;
-	free(ps->stack_b);
-	ps->stack_b = temp;
-	rm_from_a_for_pb(ps);
 }
 
 void ra(t_ps *ps)
@@ -141,6 +159,7 @@ void ra(t_ps *ps)
 		i++;
 	}
 	ps->stack_a[i] = temp;
+		ps->opers++;
 }
 
 void rb(t_ps *ps)
@@ -157,6 +176,7 @@ void rb(t_ps *ps)
 		i++;
 	}
 	ps->stack_b[i] = temp;
+		ps->opers++;
 }
 
 void rr(t_ps *ps)
@@ -164,6 +184,7 @@ void rr(t_ps *ps)
 	write(1, "rr\n", 3);
 	ra(ps);
 	rb(ps);
+		ps->opers++;
 }
 
 void rra(t_ps *ps)
@@ -180,6 +201,7 @@ void rra(t_ps *ps)
 		i--;
 	}
 	ps->stack_a[0] = temp;
+		ps->opers++;
 }
 
 void rrb(t_ps *ps)
@@ -196,6 +218,7 @@ void rrb(t_ps *ps)
 		i--;
 	}
 	ps->stack_b[0] = temp;
+		ps->opers++;
 }
 
 void rrr(t_ps *ps)
@@ -203,4 +226,5 @@ void rrr(t_ps *ps)
 	write(1, "rrr\n", 4);
 	rra(ps);
 	rrb(ps);
+		ps->opers++;
 }

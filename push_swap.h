@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oshcheho <oshcheho@student.42.fr>          +#+  +:+       +#+        */
+/*   By: oshcheho <oshcheho@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 15:03:54 by oshcheho          #+#    #+#             */
-/*   Updated: 2024/08/31 17:49:38 by oshcheho         ###   ########.fr       */
+/*   Updated: 2024/09/10 14:22:04 by oshcheho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,12 @@ typedef struct s_elem
 
 typedef struct s_ps
 {
+	int		to_move;
+	int		to_move_top;
+	int		to_move_bot;
+	int		price_top;
+	int		price_bot;
+	int		opers;
 	int		min;
 	int		max;
 	int		a_len;

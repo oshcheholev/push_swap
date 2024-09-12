@@ -6,7 +6,7 @@
 /*   By: oshcheho <oshcheho@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 14:44:56 by oshcheho          #+#    #+#             */
-/*   Updated: 2024/09/10 11:35:15 by oshcheho         ###   ########.fr       */
+/*   Updated: 2024/09/11 15:21:32 by oshcheho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,8 @@ int	main(int argc, char **argv)
 //	test_print(&ps);
 //	push_back(&ps);
 //	find_element(&ps, 0);
-	start_sort(&ps);
+//	start_sort(&ps);
+	test(&ps);
 	
 	printf("opers: %d\n", ps.opers);
 

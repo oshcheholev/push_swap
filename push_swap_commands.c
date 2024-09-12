@@ -6,7 +6,7 @@
 /*   By: oshcheho <oshcheho@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/27 15:10:25 by oshcheho          #+#    #+#             */
-/*   Updated: 2024/09/10 13:31:04 by oshcheho         ###   ########.fr       */
+/*   Updated: 2024/09/12 13:32:34 by oshcheho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -147,19 +147,22 @@ void pb(t_ps *ps)
 
 void ra(t_ps *ps)
 {
-	t_elem temp;
-	int i;
-	
-	write(1, "ra\n", 3);
-	i = 0;
-	temp = ps->stack_a[0];
-	while (i < ps->a_len - 1)
+	if (ps->a_len > 1)
 	{
-		ps->stack_a[i] = ps->stack_a[i + 1];
-		i++;
+		t_elem temp;
+		int i;
+		
+		write(1, "ra\n", 3);
+		i = 0;
+		temp = ps->stack_a[0];
+		while (i < ps->a_len - 1)
+		{
+			ps->stack_a[i] = ps->stack_a[i + 1];
+			i++;
+		}
+		ps->stack_a[i] = temp;
+			ps->opers++;
 	}
-	ps->stack_a[i] = temp;
-		ps->opers++;
 }
 
 void rb(t_ps *ps)
@@ -167,16 +170,19 @@ void rb(t_ps *ps)
 	t_elem temp;
 	int i;
 
-	write(1, "rb\n", 3);
-	i = 0;
-	temp = ps->stack_b[0];
-	while (i < ps->b_len - 1)
+	if (ps->a_len > 1)
 	{
-		ps->stack_b[i] = ps->stack_b[i + 1];
-		i++;
+		write(1, "rb\n", 3);
+		i = 0;
+		temp = ps->stack_b[0];
+		while (i < ps->b_len - 1)
+		{
+			ps->stack_b[i] = ps->stack_b[i + 1];
+			i++;
+		}
+		ps->stack_b[i] = temp;
+			ps->opers++;
 	}
-	ps->stack_b[i] = temp;
-		ps->opers++;
 }
 
 void rr(t_ps *ps)

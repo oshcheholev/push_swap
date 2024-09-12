@@ -6,7 +6,7 @@
 /*   By: oshcheho <oshcheho@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/28 15:08:12 by oshcheho          #+#    #+#             */
-/*   Updated: 2024/09/10 16:12:15 by oshcheho         ###   ########.fr       */
+/*   Updated: 2024/09/12 15:44:32 by oshcheho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -253,7 +253,7 @@ void	main_sort(t_ps *ps, int i, int top_or_bot)
 		}
 	}
 			pb(ps);
-	}
+}
 
 void	push_back(t_ps *ps)
 {
@@ -287,20 +287,21 @@ void	push_back(t_ps *ps)
 
 }
 
-void init_price(t_ps *ps)
+void	init_price(t_ps *ps)
 {
-	int i;
+	int	i;
 	
 	i = 0;
 	while (i < ps->a_len)
 	{
-		ps->stack_a[i].price_top = 0;
-		ps->stack_a[i].price_bot = 0;
-	printf ("init  %d    %d price \n", ps->stack_a[i].price_top, ps->stack_a[i].price_bot);
-
+		ps->stack_a[i].price_top = -1;
+		ps->stack_a[i].price_bot = -1;
 		i++;
 	}
+	ps->el_from_top = 0;
+	ps->el_from_bot = ps->a_len - 1;
 }
+
 void find_min_place (t_ps *ps)
 {
 	int i;
@@ -448,4 +449,135 @@ void start_sort(t_ps *ps)
 	
 //	find_element(ps, 0);
 	push_back(ps);	
+}
+
+void push_to_b1(t_ps *ps, int price)
+{
+	int i;
+
+	i = 0;
+	while (i < price)
+	{
+		ra(ps);
+		i++;
+	}
+	pb(ps);
+}
+void move_to_top(t_ps *ps, int elem)
+{
+	int i;
+	i = 0;
+	printf("el %d\n", elem);
+	while (i < elem)
+	{
+		ra(ps);
+		i++;
+	}
+	pb(ps);
+}
+
+void move_to_bot(t_ps *ps, int elem)
+{
+	int i;
+	i = 0;
+	while (i <= elem)
+	{
+		rra(ps);
+		i++;
+	}
+	pb(ps);
+}
+
+void set_prices(t_ps *ps)
+{
+	int i;
+
+	init_price(ps);
+	i = 0;
+	while(i < ps->a_len)
+	{
+		if (ps->stack_a[i].place == 0 || ps->stack_a[i].place == ps->a_len - 1)
+		{
+			ps->stack_a[i].price_top = i + ps->stack_a[i].place;
+			ps->stack_a[i].price_bot = ps->a_len - ps->stack_a[i].place;
+		}
+		i++;
+	}
+	i = 0;
+	while(i < ps->a_len)
+	{
+		printf("val %d  place  %d  pr_t  %d  pr_b  %d \n", ps->stack_a[i].value, ps->stack_a[i].place, ps->stack_a[i].price_top, ps->stack_a[i].price_bot);
+		i++;
+	}
+}
+void	move_to_b1(t_ps *ps)
+{
+	int i;
+	int move_top;
+	int move_bot;
+	int to_move[3];
+
+	move_top = -1;
+	move_bot = -1;
+	
+	i = 0;
+	while (ps->a_len > 1)
+	{
+		assign_place(ps);
+//		set_prices(ps);
+		while (i < ps->a_len) 
+		{
+			if (ps->stack_a[i].place == 0)
+			{
+				if (i <= ps->a_len / 2)
+				{
+					move_top = i;
+					to_move[1] = 0;
+				}
+				else
+				{
+					move_top = ps->a_len - i;
+					to_move[1] = 1;
+				}
+			}
+			if (ps->stack_a[i].place == ps->a_len - 1)
+			{
+				if (i <= ps->a_len - i)
+				{
+					move_bot = i;
+					to_move[1] = 0;
+				}
+				else
+				{
+					move_bot = ps->a_len - i;
+					to_move[1] = 1;
+				}
+			}
+
+			i++;
+		}
+		printf("top %d bot %d\n", move_bot, move_bot);
+		if (move_top <= move_bot)
+		{
+			to_move[2] = 0;
+			move_to_top(ps, move_top);
+		}
+		else
+		{
+			to_move[2] = 1;
+			move_to_bot(ps, move_bot);
+		}
+	}
+	test_print(ps);
+	
+}
+
+
+
+
+
+
+void test(t_ps *ps)
+{
+	move_to_b1(ps);
 }

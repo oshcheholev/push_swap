@@ -6,7 +6,7 @@
 /*   By: oshcheho <oshcheho@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/28 15:08:12 by oshcheho          #+#    #+#             */
-/*   Updated: 2024/09/12 15:44:32 by oshcheho         ###   ########.fr       */
+/*   Updated: 2024/09/12 15:50:50 by oshcheho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -488,6 +488,32 @@ void move_to_bot(t_ps *ps, int elem)
 	pb(ps);
 }
 
+void move_elem(t_ps *ps, int what, int toporbot, int rotate)
+{
+	int i;
+	i = 0;
+	if (toporbot == 0)
+	{
+		while (i <= what)
+		{
+			ra(ps);
+			i++;
+		}
+		pb(ps);
+	}
+	if (toporbot == 1)
+	{
+		while (i <= what)
+		{
+			rra(ps);
+			i++;
+		}
+		pb(ps);
+	if (rotate)
+		rb(ps);
+	}
+}
+
 void set_prices(t_ps *ps)
 {
 	int i;
@@ -560,12 +586,12 @@ void	move_to_b1(t_ps *ps)
 		if (move_top <= move_bot)
 		{
 			to_move[2] = 0;
-			move_to_top(ps, move_top);
+			move_elem(ps, move_top, to_move[1], to_move[2]);
 		}
 		else
 		{
 			to_move[2] = 1;
-			move_to_bot(ps, move_bot);
+			move_elem(ps, move_bot, to_move[1], to_move[2]);
 		}
 	}
 	test_print(ps);

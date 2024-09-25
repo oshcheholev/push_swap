@@ -6,7 +6,7 @@
 /*   By: oshcheho <oshcheho@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 15:03:54 by oshcheho          #+#    #+#             */
-/*   Updated: 2024/09/11 15:21:22 by oshcheho         ###   ########.fr       */
+/*   Updated: 2024/09/24 13:00:55 by oshcheho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,17 @@ typedef struct s_elem
 	int		price;
 	int		price_top;
 	int		price_bot;
+	int		price_min;
+	int		rotate_a;
+	int		rotate_b;
+	int		to_move_top;
+	int		to_move_bot;
 }			t_elem;
 
 typedef struct s_ps
 {
 	int		to_move;
-	int		to_move_top;
-	int		to_move_bot;
+	int		middle;
 	int		el_from_top;
 	int		el_from_bot;
 	int		price_top;
@@ -47,6 +51,7 @@ typedef struct s_ps
 }			t_ps;
 
 void	test(t_ps *ps);
+void	main_sort(t_ps *ps);
 int		ft_atoi(const char *nptr);
 int		ft_atoi_new(const char *nptr, t_ps *ps);
 void	process_input(t_ps *ps, char *str);

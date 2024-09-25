@@ -267,24 +267,30 @@ void get_rotate_a(t_ps *ps, int place)
 	printf("before rotate el.place %d ps->stack_a[0].place %d top %d bot %d\n", ps->stack_b[place].place, ps->stack_a[i].place, ps->stack_b[place].to_move_top, ps->stack_b[place].to_move_bot);
 
 	print_stack(ps);
-	if (ps->stack_b[place].to_move_top == 1)
-	{
-		while (ps->stack_b[place].place > ps->stack_a[i].place)
+	// if (ps->stack_b[place].to_move_top == 1)
+	// {
+		printf("now rotate up el.pl %d stapl %d elrot %d\n", ps->stack_b[place].place, ps->stack_a[i].place, ps->stack_b[place].rotate_a);
+		if (place < ps->middle)
 		{
-			i++;
+			while (place > ps->stack_a[i].place)
+			{
+				i++;
+			}
+			ps->stack_b[place].rotate_a = i;
 		}
-		ps->stack_b[place].rotate_a = i;
-		printf("now rotate up el.pl %d stapl %d elrot%d\n", ps->stack_b[place].place, ps->stack_a[i].place, ps->stack_b[place].rotate_a);
-	}
-	else if (ps->stack_b[place].to_move_bot == 1)
-	{
-	printf("testtt\n");
-
-		while (ps->stack_b[place].place < ps->stack_a[ps->a_len - i - 1].place)
+	// }
+	// else if (ps->stack_b[place].to_move_bot == 1)
+		else 
+		{
+		
+		
+		while (place < ps->stack_a[ps->a_len - i - 1].place)
 			i++;
 		ps->stack_b[place].rotate_a = i;
+		}
 	printf("now rot down %d st_a %d m_top %d m_bot %d el.rot %d\n", ps->stack_b[place].place, ps->stack_a[i].place, ps->stack_b[place].to_move_top, ps->stack_b[place].to_move_bot, ps->stack_b[place].rotate_a);
-	}
+	printf("testtt\n");
+	
 
 }
 
@@ -330,7 +336,7 @@ void get_min_path(t_ps *ps, int i)
 				ps->stack_b[i].rotate_a = 0;
 			else
 			{
-				get_rotate_a(ps, i);
+//				get_rotate_a(ps, i);
 			printf("after get_rotate place %d rootate_a%d\n", ps->stack_b[i].place, ps->stack_b[i].rotate_a);
 //				ps->stack_b[i].rotate_b = ps->stack_b[i].price_min;
 				ps->stack_b[i].price_min = ps->stack_b[i].price_min + ps->stack_b[i].rotate_a;
@@ -347,7 +353,7 @@ void get_min_path(t_ps *ps, int i)
 			ps->stack_b[i].rotate_a = 0;
 		else
 		{
-		 	get_rotate_a(ps, i);
+//		 	get_rotate_a(ps, i);
 			printf("after get_rotate %d\n", ps->stack_b[i].rotate_a);
 //				ps->stack_b[i].rotate_b = ps->stack_b[i].price_min;
 			ps->stack_b[i].price_min += ps->stack_b[i].rotate_a;
@@ -367,7 +373,7 @@ void get_prices(t_ps *ps)
 		ps->stack_b[i].price_top = i;
 		ps->stack_b[i].rotate_b = i;
 		ps->stack_b[i].price_bot = ps->b_len - i - 1;
-		get_min_path(ps, i);
+//		get_min_path(ps, i);
 		i++;
 	}
 //	print_with_places(ps);

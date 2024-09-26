@@ -6,7 +6,7 @@
 /*   By: oshcheho <oshcheho@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/27 15:10:25 by oshcheho          #+#    #+#             */
-/*   Updated: 2024/09/12 13:32:34 by oshcheho         ###   ########.fr       */
+/*   Updated: 2024/09/26 19:35:12 by oshcheho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -170,9 +170,9 @@ void rb(t_ps *ps)
 	t_elem temp;
 	int i;
 
+	write(1, "rb\n", 3);
 	if (ps->a_len > 1)
 	{
-		write(1, "rb\n", 3);
 		i = 0;
 		temp = ps->stack_b[0];
 		while (i < ps->b_len - 1)

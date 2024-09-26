@@ -6,7 +6,7 @@
 /*   By: oshcheho <oshcheho@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 15:03:54 by oshcheho          #+#    #+#             */
-/*   Updated: 2024/09/24 13:00:55 by oshcheho         ###   ########.fr       */
+/*   Updated: 2024/09/26 14:20:08 by oshcheho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,9 @@ typedef struct s_ps
 	t_elem	*stack_b;
 }			t_ps;
 
+
 void	test(t_ps *ps);
+void sort_5(t_ps *ps);
 void	main_sort(t_ps *ps);
 int		ft_atoi(const char *nptr);
 int		ft_atoi_new(const char *nptr, t_ps *ps);

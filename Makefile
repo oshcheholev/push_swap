@@ -6,7 +6,7 @@
 #    By: oshcheho <oshcheho@student.42vienna.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/18 13:24:31 by oshcheho          #+#    #+#              #
-#    Updated: 2024/09/24 12:14:26 by oshcheho         ###   ########.fr        #
+#    Updated: 2024/09/26 14:18:27 by oshcheho         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ NAME = push_swap
 
 AR		= ar rsc
 
-SRC = ./push_swap.c ./push_swap_check.c ./push_swap_commands.c ./push_swap_sort.c ./push_swap_sort2.c
+SRC = ./push_swap.c ./push_swap_check.c ./push_swap_commands.c ./push_swap_sort.c ./push_swap_sort2.c ./push_swap_sort_small.c ./push_swap_tools.c
 
 HEAD	= ./
 

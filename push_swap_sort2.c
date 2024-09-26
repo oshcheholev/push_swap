@@ -2,129 +2,6 @@
 #include "push_swap.h"
 #include <stdio.h>
 
-int	*create_temp_arr(t_ps *ps)
-{
-	int	i;
-	int	*res;
-	
-	i = 0;
-	// while (i < ps->a_len)
-	// {
-	// 	printf("1 %d\n", ps->stack_a[i].value);
-	// 	i++;
-	// }
-
-	i = 0;
-	res = malloc(ps->a_len * sizeof(int));
-	if (!res)
-		return (free(res), NULL);
-	while (i < ps->a_len)
-	{
-		res[i] = ps->stack_a[i].value;
-		i++;
-	}
-	i = 0;
-	return (res);
-}
-int *temp_sort_arr(t_ps *ps)
-{
-	int	i;
-	int j;
-	int	*res;
-	int temp;
-
-	res = create_temp_arr(ps);
-	i = 0;
-	// while (i < ps->a_len)
-	// {
-	// 	printf("temp sort   %d   %d\n", ps->a_len, ps->stack_a[i].value);
-	// 	i++;
-	// }
-	if (!res)
-		return (free(res), NULL);
-	i = ps->a_len - 1;
-	while (i > 0)
-	{
-		j = 0;
-		while (j < i)
-		{
-			// printf("aaa  %d %d %d %d \n", i, j, res[j], res[j + 1]);
-			if (res[j] > res[j + 1])
-			{
-				temp = res[j];
-				res[j] = res[j + 1];
-				res[j + 1] = temp;
-			}
-			j++;
-		}
-		i--;
-	}
-	i = 0;
-	return (res);
-}
-
-void assign_place(t_ps *ps)
-{
-	int i;
-	int j;
-	int *arr;
-
-	i = 0;
-	j = 0;
-	arr = temp_sort_arr(ps);
-	if (!arr)
-		return (free(arr));
-	while(i < ps->a_len)
-	{
-		while(j < ps->a_len)
-		{
-			if (ps->stack_a[j].value == arr[i])
-			ps->stack_a[j].place = i;
-			j++;
-		}
-		j = 0;
-		i++;
-	}
-	free(arr);	
-	// i = 0;
-	// while (i < ps->a_len)
-	// {
-	// 	printf("value  %d   place %d\n", ps->stack_a[i].value, ps->stack_a[i].place);
-	// 	i++;
-	// }
-}
-
-void sort_3(t_ps *ps)
-{
-	if (ps->stack_a[0].place == ps->middle - 1)
-	{
-		if (ps->stack_a[1].place == ps->middle)
-			return ;
-		else
-		{
-			rra(ps);
-			sa(ps);
-		}
-	}
-	else if (ps->stack_a[0].place == ps->middle)
-	{
-		if (ps->stack_a[1].place == ps->middle + 1)
-			rra(ps);
-		else
-			sa(ps);
-	}
-	else if (ps->stack_a[0].place == ps->middle + 1)
-	{
-		if (ps->stack_a[1].place == ps->middle - 1)
-			ra(ps);
-		else
-		{
-			sa(ps);
-			rra(ps);
-		}
-	}
-}
-
 void print_stack(t_ps *ps) {
     printf("Stack A: ");
     for (int i = 0; i < ps->a_len; i++) {
@@ -135,78 +12,6 @@ void print_stack(t_ps *ps) {
         printf("%d ", ps->stack_b[i].place);
     }
     printf("\n");
-}
-
-int find_min(t_ps *ps)
-{
-	int i;
-	int res;
-
-	i = 0;
-	res = ps->stack_a[0].place;
-	while (i < ps->a_len)
-	{
-		if (ps->stack_a[i].place < res)
-			res = ps->stack_a[i].place;
-		i++;
-	}
-//	print_stack(ps);
-	return (res);
-}
-
-int find_max(t_ps *ps)
-{
-	int i;
-	int res;
-
-	i = 0;
-	res = ps->stack_a[0].place;
-	while (i < ps->a_len)
-	{
-		if (ps->stack_a[i].place > res)
-			res = ps->stack_a[i].place;
-		i++;
-	}
-//	print_stack(ps);
-
-    // printf("max A: %d\n", res);
-
-	return (res);
-}
-
-
-void sort_5(t_ps *ps)
-{
-	int min;
-	int max;
-
-	min = find_min(ps);
-	max = find_max(ps);
-	// printf("1\n");
-	// print_stack(ps);
-	while (ps->a_len > 3)
-	{
-		if (ps->stack_a[0].place == min || ps->stack_a[0].place == max)
-			pb(ps);
-		else
-			ra(ps);
-	}
-
-	sort_3(ps);
-	// printf("2\n");
-	// print_stack(ps);
-	pa(ps);
-	pa(ps);
-	if (ps->stack_a[0].place > ps->stack_a[1].place)
-		ra(ps);
-	else
-	{
-		sa(ps);
-		ra(ps);
-	}
-//	print_stack(ps);
-//	 printf("op 5 %d\n", ps->opers);
-
 }
 
 int ft_abs(int i)
@@ -379,6 +184,163 @@ void get_prices(t_ps *ps)
 //	print_with_places(ps);
 }
 
+void set_price(t_ps *ps, int i)
+{
+	int to_b_top;
+	int to_b_bot;
+	int from_a_top;
+	int from_a_bot;
+	int to_a_top;
+	int to_a_bot;
+	int j;
+
+	to_a_bot = 0;
+	to_a_top = 0;
+	j = 0;
+	to_b_top = i;
+	to_b_bot = ps->b_len - 1 - i ;
+	if (to_b_top <= to_b_bot)
+	{
+		ps->stack_b[i].rotate_b = i;
+		ps->stack_b[i].to_move_top = 1;
+		ps->stack_b[i].price_min = to_b_top; 
+	}
+	else
+	{
+		ps->stack_b[i].rotate_b = ps->b_len - 1 - i;
+		ps->stack_b[i].to_move_top = 0;
+		ps->stack_b[i].price_min = to_b_bot;
+
+	}
+	if (ps->stack_b[i].place < ps->stack_a[0].place)
+	{
+		from_a_top = ps->stack_a[0].place - ps->stack_b[i].place;
+		ps->stack_b[i].price_min += from_a_top;
+	}
+	if(ps->stack_b[i].place > ps->stack_a[ps->a_len - 1].place)
+	{
+		from_a_bot = ps->stack_b[i].place - ps->stack_a[ps->a_len - 1].place;
+		ps->stack_b[i].price_min += from_a_bot;
+	}
+	if (ps->stack_b[i].place < ps->middle)
+	{
+		while (ps->stack_b[i].place > ps->stack_a[j].place)
+			j++;
+		to_a_top = j;
+		ps->stack_b[i].price_min += to_a_top;
+		ps->stack_b[i].rotate_a = j;
+	}
+	else
+	{
+		while (ps->stack_b[i].place < ps->stack_a[ps->a_len - 1 - j].place)
+			j++;
+		to_a_bot = j;
+		ps->stack_b[i].price_min += to_a_bot;
+		ps->stack_b[i].rotate_a = j;
+	}
+	printf("i %d pl %d rota %d rotb %d\n", i, ps->stack_b[i].place, ps->stack_b[i].rotate_a, ps->stack_b[i].rotate_b);
+}
+
+int find_min_place(t_ps *ps)
+{
+	int i;
+	int min_price;
+	int min_pos;
+
+	i = 0;
+	min_pos = 0;
+	min_price = ps->stack_b[0].price_min;
+	while(i < ps->b_len)
+	{
+		printf("minpl %d\n", ps->stack_b[i].price_min);
+		if (ps->stack_b[i].price_min < min_price)
+		{
+			min_price = ps->stack_b[i].price_min;
+			min_pos = i;
+		}
+		i++;
+	}
+	return (min_pos);
+}
+
+void order_a(t_ps *ps, t_elem elem)
+{
+	int i;
+
+	i = 0;
+	printf("el.place  %d el.rot_a  %d\n", elem.place, elem.rotate_a);
+	if(elem.place < ps->middle)
+	{
+		while(i < elem.rotate_a)
+		{
+			ra(ps);
+			i++;
+		}
+		pa(ps);
+		i = 0;
+		while(i < elem.rotate_a)
+		{
+			rra(ps);
+			i++;
+		}
+	}
+	else
+	{
+		while(i < elem.rotate_a)
+		{
+			rra(ps);
+			i++;
+		}
+		pa(ps);
+		i = 0;
+		while(i <= elem.rotate_a)
+		{
+			ra(ps);
+			i++;
+		}
+	}
+}
+
+void push_to_a(t_ps *ps)
+{
+	int i;
+	int min_el;
+
+	i = 0;
+	min_el = find_min_place(ps);
+	printf("min from min_el %d  %d\n", min_el, ps->stack_b[min_el].rotate_b);
+	if (ps->stack_b[min_el].to_move_top == 1)
+	{
+		while (i < ps->stack_b[min_el].rotate_b)
+		{
+			rb(ps);
+			i++;
+		}
+	}	
+	else
+	{
+		while (i < ps->stack_b[min_el].rotate_b)
+		{
+			rrb(ps);
+			i++;
+		}
+	}	
+	order_a(ps, ps->stack_b[min_el]);
+
+	print_stack(ps);
+
+}
+void b_print_places(t_ps *ps)
+{
+	int i;
+
+	i = 0;
+	while(i < ps->b_len)
+	{
+		printf("place %d, m_price %d, rb %d, ra %d\n", ps->stack_b[i].place, ps->stack_b[i].price_min, ps->stack_b[i].rotate_b, ps->stack_b[i].rotate_a);
+		i++;
+	}
+}
 void move_el_to_a(t_ps *ps, t_elem elem)
 {
 	printf("move_el   %d\n", elem.place);
@@ -463,6 +425,7 @@ int get_min_el(t_ps *ps)
 	min_place = 0;
 	while (i < ps->b_len)
 	{
+		printf("pricemin%d\n", ps->stack_b[i].price_min);
 		if (ps->stack_b[i].price_min < min)
 		{
 			min = ps->stack_b[i].price_min;
@@ -478,19 +441,20 @@ void move_back_to_a(t_ps *ps)
 {
 	printf("move_back_main\n");
 	int i;
-	int min_el;
+	int min_place;
 
 	i = 0;
 	while(ps->b_len > 0)
 	{
-		get_prices(ps);
-		min_el = get_min_el(ps);
-	printf("min from min el %d\n", min_el);
-	print_stack(ps);
-//	sleep(1);
+	// printf("min from min el %d\n", min_place);
+	// print_stack(ps);
+//	sleep(1);t_ps *ps
+
 	while (i < ps->b_len)
 	{
-		if (ps->stack_b[i].place == min_el)		
+		set_price(ps, i);
+		min_place = get_min_el(ps);
+		if (ps->stack_b[i].place == min_place)		
 			move_el_to_a(ps, ps->stack_b[i]);
 		i++;
 	}
@@ -498,10 +462,30 @@ void move_back_to_a(t_ps *ps)
 	print_stack(ps);
 }
 
+void test_for_price(t_ps *ps)
+{
+	int i;
+
+	i = 0;
+	b_print_places(ps);
+	while (ps->b_len > 0)
+	{
+		i = 0;
+		while(i < ps->b_len)
+		{
+			set_price(ps, i);
+			i++;
+		}
+
+		push_to_a(ps);
+	}
+	test_print(ps);
+}
 void main_sort(t_ps *ps)
 {
 	first_move_to_b(ps);
 	sort_5(ps);
-	move_back_to_a(ps);
-	test_print(ps);
+	test_for_price(ps);
+	// move_back_to_a(ps);
+//	test_print(ps);
 }

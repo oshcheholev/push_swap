@@ -1,8 +1,8 @@
 
 #include "push_swap.h"
-#include <stdio.h>
 
-void print_stack(t_ps *ps) {
+void print_stack(t_ps *ps) 
+{
     printf("Stack A: ");
     for (int i = 0; i < ps->a_len; i++) {
         printf("%d ", ps->stack_a[i].place);
@@ -184,6 +184,74 @@ void get_prices(t_ps *ps)
 //	print_with_places(ps);
 }
 
+void set_price1(t_ps *ps, int i)
+{
+    int j = 0;
+    int to_b_top = i;
+    int to_b_bot = ps->b_len - 1 - i;
+
+    // Calculate price for moving element in B to the correct place in B
+    if (to_b_top <= to_b_bot)
+    {
+        ps->stack_b[i].rotate_b = to_b_top;
+        ps->stack_b[i].to_move_top = 1;
+        ps->stack_b[i].price_min = to_b_top;
+    }
+    else
+    {
+        ps->stack_b[i].rotate_b = to_b_bot;
+        ps->stack_b[i].to_move_top = 0;
+        ps->stack_b[i].price_min = to_b_bot;
+    }
+
+    // Calculate where to insert in A
+    if (ps->stack_b[i].place < ps->stack_a[0].place) 
+    {
+        // Element is smaller than the smallest in A, goes to bottom of A
+        ps->stack_b[i].rotate_a = 0;
+        ps->stack_b[i].price_min += 0;  // Already in the correct place at the bottom
+    }
+    else if (ps->stack_b[i].place > ps->stack_a[ps->a_len - 1].place) 
+    {
+        // Element is larger than the largest in A, goes to top of A
+        ps->stack_b[i].rotate_a = ps->a_len;  // Rotate entire stack
+        ps->stack_b[i].price_min += ps->a_len;
+    }
+    else 
+    {
+        // Element is between two elements in A, find the right place
+        while (ps->stack_b[i].place > ps->stack_a[j].place)
+            j++;
+        
+        // Calculate rotations needed for the correct insertion point
+        int to_a_top = j;
+        int to_a_bot = ps->a_len - j;
+
+        if (to_a_top <= to_a_bot)
+        {
+            ps->stack_b[i].rotate_a = to_a_top;
+            ps->stack_b[i].price_min += to_a_top;
+        }
+        else
+        {
+            ps->stack_b[i].rotate_a = to_a_bot;
+            ps->stack_b[i].price_min += to_a_bot;
+        }
+    }
+
+    // Optimize for simultaneous rotations
+    if (ps->stack_b[i].to_move_top && ps->stack_b[i].rotate_a == ps->stack_b[i].rotate_b)
+    {
+        // If both stacks are moving to the top and rotate values are equal, use `rr`
+        ps->stack_b[i].price_min -= ps->stack_b[i].rotate_b;  // Reduce cost
+    }
+    else if (!ps->stack_b[i].to_move_top && ps->stack_b[i].rotate_a == ps->stack_b[i].rotate_b)
+    {
+        // If both stacks are moving to the bottom and rotate values are equal, use `rrr`
+        ps->stack_b[i].price_min -= ps->stack_b[i].rotate_b;  // Reduce cost
+    }
+}
+
 void set_price(t_ps *ps, int i)
 {
 	int to_b_top;
@@ -222,22 +290,36 @@ void set_price(t_ps *ps, int i)
 		from_a_bot = ps->stack_b[i].place - ps->stack_a[ps->a_len - 1].place;
 		ps->stack_b[i].price_min += from_a_bot;
 	}
-	if (ps->stack_b[i].place < ps->middle)
+
+	if (ps->stack_b[i].place > ps->stack_a[0].place)
 	{
+		j = 0;
 		while (ps->stack_b[i].place > ps->stack_a[j].place)
 			j++;
 		to_a_top = j;
-		ps->stack_b[i].price_min += to_a_top;
-		ps->stack_b[i].rotate_a = j;
 	}
-	else
+
+
+	if (ps->stack_b[i].place < ps->stack_a[ps->a_len - 1].place)
 	{
+	printf("iiiii %d pl b %d pl a %d\n", i, ps->stack_b[i].place, ps->stack_a[0].place);
+	
+		j = 0;
 		while (ps->stack_b[i].place < ps->stack_a[ps->a_len - 1 - j].place)
 			j++;
 		to_a_bot = j;
-		ps->stack_b[i].price_min += to_a_bot;
-		ps->stack_b[i].rotate_a = j;
 	}
+		if (to_a_top < to_a_bot)
+		{
+			ps->stack_b[i].price_min += to_a_top;
+			ps->stack_b[i].rotate_a = j;
+		}
+		else
+		{
+			ps->stack_b[i].price_min += to_a_bot;
+			ps->stack_b[i].rotate_a = -j;
+		}
+
 	printf("i %d pl %d rota %d rotb %d\n", i, ps->stack_b[i].place, ps->stack_b[i].rotate_a, ps->stack_b[i].rotate_b);
 }
 
@@ -252,7 +334,7 @@ int find_min_place(t_ps *ps)
 	min_price = ps->stack_b[0].price_min;
 	while(i < ps->b_len)
 	{
-		printf("minpl %d\n", ps->stack_b[i].price_min);
+		printf("min pl %d pr %d\n", ps->stack_b[i].place, ps->stack_b[i].price_min);
 		if (ps->stack_b[i].price_min < min_price)
 		{
 			min_price = ps->stack_b[i].price_min;
@@ -269,7 +351,7 @@ void order_a(t_ps *ps, t_elem elem)
 
 	i = 0;
 	printf("el.place  %d el.rot_a  %d\n", elem.place, elem.rotate_a);
-	if(elem.place < ps->middle)
+	if(elem.rotate_a > 0)
 	{
 		while(i < elem.rotate_a)
 		{
@@ -286,17 +368,17 @@ void order_a(t_ps *ps, t_elem elem)
 	}
 	else
 	{
-		while(i < elem.rotate_a)
+		while(i > elem.rotate_a)
 		{
 			rra(ps);
-			i++;
+			i--;
 		}
 		pa(ps);
 		i = 0;
-		while(i <= elem.rotate_a)
+		while(i > elem.rotate_a)
 		{
 			ra(ps);
-			i++;
+			i--;
 		}
 	}
 }
@@ -413,6 +495,7 @@ void move_el_to_a(t_ps *ps, t_elem elem)
 	}	
 
 }
+
 int get_min_el(t_ps *ps)
 {
 	printf("get_min_el\n");
@@ -462,6 +545,13 @@ void move_back_to_a(t_ps *ps)
 	print_stack(ps);
 }
 
+void put_all_to_b(t_ps *ps)
+{
+	while (ps->a_len > 3)
+	{
+		pb(ps);
+	}
+}
 void test_for_price(t_ps *ps)
 {
 	int i;
@@ -473,7 +563,7 @@ void test_for_price(t_ps *ps)
 		i = 0;
 		while(i < ps->b_len)
 		{
-			set_price(ps, i);
+			set_price1(ps, i);
 			i++;
 		}
 
@@ -485,6 +575,9 @@ void main_sort(t_ps *ps)
 {
 	first_move_to_b(ps);
 	sort_5(ps);
+	put_all_to_b(ps);
+	sort_3(ps);
+
 	test_for_price(ps);
 	// move_back_to_a(ps);
 //	test_print(ps);

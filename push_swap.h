@@ -6,7 +6,7 @@
 /*   By: oshcheho <oshcheho@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 15:03:54 by oshcheho          #+#    #+#             */
-/*   Updated: 2024/09/26 14:20:08 by oshcheho         ###   ########.fr       */
+/*   Updated: 2024/09/27 15:48:42 by oshcheho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,14 +23,22 @@ typedef struct s_elem
 {
 	int		value;
 	int		place;
-	int		price;
-	int		price_top;
-	int		price_bot;
-	int		price_min;
-	int		rotate_a;
-	int		rotate_b;
-	int		to_move_top;
-	int		to_move_bot;
+	int		rbs;
+	int		rrbs;
+	int		ras;
+	int		rras;
+	int		min_moves;
+
+// TODO try to make sa sb......
+	
+	// int		price;
+	// int		price_top;
+	// int		price_bot;
+	// int		price_min;
+	// int		rotate_a;
+	// int		rotate_b;
+	// int		to_move_top;
+	// int		to_move_bot;
 }			t_elem;
 
 typedef struct s_ps
@@ -50,9 +58,12 @@ typedef struct s_ps
 	t_elem	*stack_b;
 }			t_ps;
 
-
+void print_stack(t_ps *ps);
+void new_sort(t_ps *ps);
+void first_move_to_b(t_ps *ps);
 void	test(t_ps *ps);
 void sort_5(t_ps *ps);
+void sort_3(t_ps *ps);
 void	main_sort(t_ps *ps);
 int		ft_atoi(const char *nptr);
 int		ft_atoi_new(const char *nptr, t_ps *ps);

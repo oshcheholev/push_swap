@@ -6,7 +6,7 @@
 /*   By: oshcheho <oshcheho@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 14:44:56 by oshcheho          #+#    #+#             */
-/*   Updated: 2024/09/24 12:14:10 by oshcheho         ###   ########.fr       */
+/*   Updated: 2024/09/27 16:16:13 by oshcheho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,12 +42,12 @@ int	main(int argc, char **argv)
 	//my_sort(&ps);
 //	temp_sort_arr(&ps);
 	assign_place(&ps);
-//	test_print(&ps);
+	test_print(&ps);
 //	push_back(&ps);
 //	find_element(&ps, 0);
 //	start_sort(&ps);
 //	test(&ps);
-	main_sort(&ps);	
+	new_sort(&ps);	
 		
 	printf("opers: %d\n", ps.opers);
 

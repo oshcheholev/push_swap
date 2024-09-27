@@ -6,7 +6,7 @@
 /*   By: oshcheho <oshcheho@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 14:46:17 by oshcheho          #+#    #+#             */
-/*   Updated: 2024/09/11 15:25:05 by oshcheho         ###   ########.fr       */
+/*   Updated: 2024/09/27 15:52:01 by oshcheho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ int	ft_atoi_new(const char *nptr, t_ps *ps)
 		if (sign == -1 && res > (INT_MAX - (nptr[i] - '0')) / 10)
 			err_exit(ps, "atoi6");
 		res = res * 10 + nptr[i] - '0';
-		printf("res %d\n", res);
+//		printf("res %d\n", res);
 		i++;
 	}
 	return (res * sign);

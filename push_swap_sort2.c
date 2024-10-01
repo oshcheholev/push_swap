@@ -7,9 +7,20 @@ void print_stack(t_ps *ps)
     for (int i = 0; i < ps->a_len; i++) {
         printf("%d ", ps->stack_a[i].place);
     }
+    printf("\n");
+
     printf("\nStack B: ");
     for (int i = 0; i < ps->b_len; i++) {
         printf("%d ", ps->stack_b[i].place);
+    }
+    printf("\n");
+    printf("Stack A: ");
+    for (int i = 0; i < ps->a_len; i++) {
+        printf("%d ", ps->stack_a[i].value);
+    }
+    printf("\nStack B: ");
+    for (int i = 0; i < ps->b_len; i++) {
+        printf("%d ", ps->stack_b[i].value);
     }
     printf("\n");
 }

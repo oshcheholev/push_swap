@@ -287,20 +287,20 @@
 
 // }
 
-void	init_price(t_ps *ps)
-{
-	int	i;
+// void	init_price(t_ps *ps)
+// {
+// 	int	i;
 	
-	i = 0;
-	while (i < ps->a_len)
-	{
-		ps->stack_a[i].price_top = -1;
-		ps->stack_a[i].price_bot = -1;
-		i++;
-	}
-	ps->el_from_top = 0;
-	ps->el_from_bot = ps->a_len - 1;
-}
+// 	i = 0;
+// 	while (i < ps->a_len)
+// 	{
+// 		ps->stack_a[i].price_top = -1;
+// 		ps->stack_a[i].price_bot = -1;
+// 		i++;
+// 	}
+// 	ps->el_from_top = 0;
+// 	ps->el_from_bot = ps->a_len - 1;
+// }
 
 // void find_min_place (t_ps *ps)
 // {

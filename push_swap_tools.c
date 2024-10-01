@@ -77,6 +77,16 @@ void print_stack(t_ps *ps) {
         printf("%d ", ps->stack_b[i].place);
     }
     printf("\n");
+    printf("Stack A: ");
+    for (int i = 0; i < ps->a_len; i++) {
+        printf("%d ", ps->stack_a[i].value);
+    }
+    printf("\nStack B: ");
+    for (int i = 0; i < ps->b_len; i++) {
+        printf("%d ", ps->stack_b[i].value);
+    }
+    printf("\n");
+
 }
 
 void assign_place(t_ps *ps)
@@ -102,30 +112,33 @@ void assign_place(t_ps *ps)
 		i++;
 	}
 	free(arr);	
-	print_stack(ps);
+//	print_stack(ps);
 }
 
 void first_move_to_b(t_ps *ps)
 {
-	// int len;
+	int len;
 
-	// len = ps->a_len;
+	len = ps->a_len;
 	ps->middle = ps->a_len / 2;
-	// while (ps->a_len > ps->middle + 2)
-	// {
-	// 	if (ps->stack_a[0].place < len / 4 || ps->stack_a[0].place > len - len / 4)
-	// 	{
-	// 		if (ps->stack_a[0].place < len / 4)
-	// 			pb(ps);
-	// 		else
-	// 		{
-	// 			pb(ps);
-	// 			rb(ps);
-	// 		}
-	// 	}
-	// 	else
-	// 		ra(ps);
-	// }
+	while (ps->a_len > ps->middle + 3)
+	{
+		if (ps->stack_a[0].place < len / 4 - 1 || ps->stack_a[0].place > len - len / 4 + 1)
+		{
+			if (ps->stack_a[0].place < len / 4 - 1)
+				pb(ps);
+			else
+			{
+				pb(ps);
+				rb(ps);
+			}
+			// if (ps->stack_b[0].place > ps->stack_b[1].place && ps->b_len > 2)
+			// 	sb(ps);
+		}
+		else
+			ra(ps);
+	}
+//		printf("m %d\n", ps->middle);
 	while (ps->a_len > 5)
 	{
 		if (ps->stack_a[0].place != ps->middle && ps->stack_a[0].place != ps->middle + 1

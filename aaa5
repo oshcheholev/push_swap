@@ -1,0 +1,770 @@
+ra
+ra
+pb
+pb
+pb
+ra
+ra
+ra
+ra
+ra
+ra
+pb
+ra
+ra
+pb
+rb
+ra
+ra
+ra
+pb
+rb
+ra
+pb
+rb
+ra
+pb
+rb
+pb
+pb
+pb
+pb
+rb
+ra
+ra
+pb
+pb
+pb
+ra
+pb
+ra
+pb
+pb
+rb
+pb
+rb
+pb
+ra
+ra
+ra
+pb
+rb
+ra
+pb
+ra
+ra
+ra
+ra
+ra
+pb
+rb
+pb
+ra
+pb
+rb
+pb
+rb
+pb
+pb
+ra
+ra
+pb
+pb
+pb
+rb
+ra
+ra
+pb
+ra
+ra
+ra
+ra
+ra
+pb
+rb
+ra
+pb
+pb
+ra
+pb
+rb
+pb
+rb
+ra
+ra
+pb
+rb
+pb
+rb
+pb
+pb
+rb
+pb
+rb
+ra
+pb
+ra
+ra
+ra
+ra
+pb
+rb
+pb
+rb
+ra
+pb
+pb
+rb
+pb
+rb
+pb
+rb
+pb
+rb
+pb
+rb
+pb
+rb
+pb
+rb
+pb
+pb
+pb
+rb
+pb
+ra
+pb
+pb
+pb
+pb
+pb
+rb
+pb
+rb
+pb
+ra
+pb
+rb
+pb
+rb
+ra
+pb
+pb
+pb
+rb
+pb
+pb
+rb
+pb
+rb
+pb
+rb
+pb
+pb
+rb
+pb
+rb
+pb
+pb
+rb
+pb
+pb
+rb
+pb
+pb
+rb
+pb
+pb
+ra
+pb
+rb
+pb
+pb
+rb
+ra
+pb
+pb
+pb
+pb
+rb
+pb
+pb
+pb
+rb
+pb
+rb
+ra
+ra
+pb
+ra
+pb
+rra
+sa
+pa
+pa
+sa
+ra
+rb
+pa
+ra
+ra
+ra
+ra
+ra
+pa
+ra
+ra
+ra
+ra
+ra
+ra
+rrb
+rrb
+rrb
+rrb
+pa
+ra
+rrr
+rra
+rra
+rra
+rra
+rra
+rra
+rrb
+pa
+ra
+rrb
+rrb
+rrb
+rrb
+rrb
+rrb
+rrb
+rrb
+pa
+ra
+rrr
+rrb
+rrb
+pa
+ra
+rra
+rra
+rra
+rra
+rra
+rra
+rra
+pa
+ra
+rra
+rra
+rra
+rra
+rra
+rra
+rra
+rra
+rra
+rra
+rra
+pa
+ra
+rra
+rra
+rra
+rra
+rra
+rra
+rra
+rra
+rra
+rra
+rra
+rra
+pa
+ra
+rra
+rra
+rra
+rra
+rra
+rra
+rra
+rra
+rra
+rra
+rra
+rra
+rra
+rb
+rb
+pa
+ra
+rra
+rra
+rra
+rra
+rra
+rra
+rra
+rra
+rra
+rra
+rra
+rra
+rra
+rra
+pa
+ra
+rra
+rra
+rra
+rra
+rra
+rra
+rra
+rra
+rra
+rra
+rra
+rra
+rra
+rra
+rra
+rb
+rb
+rb
+rb
+rb
+pa
+ra
+ra
+ra
+ra
+ra
+ra
+ra
+ra
+ra
+ra
+ra
+ra
+ra
+ra
+ra
+ra
+pa
+ra
+rra
+rra
+rra
+rra
+rra
+rra
+rra
+rra
+rra
+rra
+rra
+rra
+rra
+rra
+rra
+rra
+pa
+ra
+rra
+rra
+rra
+rra
+rra
+rra
+rra
+rra
+rra
+rra
+rra
+rra
+rra
+rra
+rra
+rra
+rra
+pa
+ra
+rra
+rra
+rra
+rra
+rra
+rra
+rra
+rra
+rra
+rra
+rra
+rra
+rra
+rra
+rra
+pa
+ra
+rra
+rra
+rra
+rra
+rra
+rra
+rra
+rra
+rra
+rra
+rra
+rra
+rra
+pa
+ra
+rra
+rra
+rra
+rra
+rra
+rra
+rra
+rra
+rra
+pa
+ra
+rra
+rra
+rra
+rra
+rra
+rra
+rra
+rra
+rra
+rra
+rra
+rra
+rra
+rra
+rra
+rra
+rra
+rra
+rra
+rra
+rra
+pa
+ra
+rra
+rra
+rra
+rra
+rra
+rra
+rra
+rra
+pa
+ra
+rra
+rra
+rra
+rra
+rra
+rra
+rr
+rb
+rb
+rb
+rb
+rb
+rb
+rb
+pa
+pa
+ra
+pa
+ra
+ra
+pa
+ra
+ra
+ra
+pa
+ra
+pa
+ra
+pa
+ra
+pa
+ra
+pa
+ra
+pa
+ra
+pa
+ra
+pa
+ra
+pa
+ra
+pa
+ra
+pa
+ra
+pa
+ra
+pa
+ra
+pa
+ra
+pa
+ra
+pa
+ra
+pa
+ra
+pa
+ra
+pa
+ra
+pa
+ra
+pa
+ra
+pa
+ra
+pa
+ra
+pa
+ra
+pa
+ra
+pa
+ras 0 rras 5 rbs 1 rrbs -1 ras_tot 0 rras_tot 5 to_top 1
+ras 0 rras 6 rbs 0 rrbs -1 ras_tot 0 rras_tot 6 to_top 1
+rest ras 0 rest rras 5 rbs 0 rrbs -1 
+ras 7 rras 0 rbs -1 rrbs 3 ras_tot 7 rras_tot 0 to_top 0
+rest ras 0 rest rras 6 rbs -1 rrbs 3 
+ras 0 rras 0 rbs -1 rrbs 1 ras_tot 0 rras_tot 0 to_top 0
+ras 0 rras 0 rbs -1 rrbs 7 ras_tot 0 rras_tot 0 to_top 0
+ras 7 rras 1 rbs -1 rrbs 2 ras_tot 7 rras_tot 1 to_top 0
+ras 11 rras 0 rbs 0 rrbs -1 ras_tot 11 rras_tot 0 to_top 0
+ras 12 rras 0 rbs 0 rrbs -1 ras_tot 12 rras_tot 0 to_top 0
+ras 13 rras 0 rbs 0 rrbs -1 ras_tot 13 rras_tot 0 to_top 0
+ras 14 rras 0 rbs 2 rrbs -1 ras_tot 14 rras_tot 0 to_top 0
+ras 15 rras 0 rbs -1 rrbs 0 ras_tot 15 rras_tot 0 to_top 0
+ras 0 rras 16 rbs 5 rrbs -1 ras_tot 0 rras_tot 16 to_top 1
+ras 15 rras 0 rbs -1 rrbs 0 ras_tot 15 rras_tot 0 to_top 0
+rest ras 0 rest rras 16 rbs -1 rrbs 0 
+ras 17 rras 1 rbs -1 rrbs 0 ras_tot 17 rras_tot 1 to_top 0
+ras 15 rras 0 rbs -1 rrbs 0 ras_tot 15 rras_tot 0 to_top 0
+ras 13 rras 0 rbs -1 rrbs 0 ras_tot 13 rras_tot 0 to_top 0
+ras 8 rras 0 rbs -1 rrbs 0 ras_tot 8 rras_tot 0 to_top 0
+ras 21 rras 1 rbs -1 rrbs 0 ras_tot 21 rras_tot 1 to_top 0
+ras 8 rras 0 rbs -1 rrbs 0 ras_tot 8 rras_tot 0 to_top 0
+ras 6 rras 0 rbs -1 rrbs 0 ras_tot 6 rras_tot 0 to_top 0
+ras 1 rras 0 rbs 8 rrbs -1 ras_tot 1 rras_tot 0 to_top 1
+ras 0 rras 1 rbs 0 rrbs -1 ras_tot 0 rras_tot 1 to_top 1
+rest ras 1 rest rras 0 rbs 0 rrbs -1 
+ras 0 rras 1 rbs -1 rrbs 0 ras_tot 0 rras_tot 1 to_top 1
+rest ras 0 rest rras 1 rbs -1 rrbs 0 
+ras 1 rras 2 rbs -1 rrbs 0 ras_tot 1 rras_tot 2 to_top 1
+rest ras 0 rest rras 1 rbs -1 rrbs 0 
+ras 1 rras 1 rbs -1 rrbs 0 ras_tot 1 rras_tot 1 to_top 1
+rest ras 1 rest rras 2 rbs -1 rrbs 0 
+ras 1 rras 0 rbs -1 rrbs 0 ras_tot 1 rras_tot 0 to_top 1
+rest ras 1 rest rras 1 rbs -1 rrbs 0 
+ras 1 rras 0 rbs -1 rrbs 0 ras_tot 1 rras_tot 0 to_top 1
+rest ras 1 rest rras 0 rbs -1 rrbs 0 
+ras 1 rras 0 rbs -1 rrbs 0 ras_tot 1 rras_tot 0 to_top 1
+rest ras 1 rest rras 0 rbs -1 rrbs 0 
+ras 1 rras 0 rbs -1 rrbs 0 ras_tot 1 rras_tot 0 to_top 1
+rest ras 1 rest rras 0 rbs -1 rrbs 0 
+ras 1 rras 0 rbs -1 rrbs 0 ras_tot 1 rras_tot 0 to_top 1
+rest ras 1 rest rras 0 rbs -1 rrbs 0 
+ras 1 rras 0 rbs -1 rrbs 0 ras_tot 1 rras_tot 0 to_top 1
+rest ras 1 rest rras 0 rbs -1 rrbs 0 
+ras 1 rras 0 rbs -1 rrbs 0 ras_tot 1 rras_tot 0 to_top 1
+rest ras 1 rest rras 0 rbs -1 rrbs 0 
+ras 1 rras 0 rbs -1 rrbs 0 ras_tot 1 rras_tot 0 to_top 1
+rest ras 1 rest rras 0 rbs -1 rrbs 0 
+ras 1 rras 0 rbs -1 rrbs 0 ras_tot 1 rras_tot 0 to_top 1
+rest ras 1 rest rras 0 rbs -1 rrbs 0 
+ras 1 rras 0 rbs -1 rrbs 0 ras_tot 1 rras_tot 0 to_top 1
+rest ras 1 rest rras 0 rbs -1 rrbs 0 
+ras 1 rras 0 rbs -1 rrbs 0 ras_tot 1 rras_tot 0 to_top 1
+rest ras 1 rest rras 0 rbs -1 rrbs 0 
+ras 1 rras 0 rbs -1 rrbs 0 ras_tot 1 rras_tot 0 to_top 1
+rest ras 1 rest rras 0 rbs -1 rrbs 0 
+ras 1 rras 0 rbs -1 rrbs 0 ras_tot 1 rras_tot 0 to_top 1
+rest ras 1 rest rras 0 rbs -1 rrbs 0 
+ras 1 rras 0 rbs -1 rrbs 0 ras_tot 1 rras_tot 0 to_top 1
+rest ras 1 rest rras 0 rbs -1 rrbs 0 
+ras 1 rras 0 rbs -1 rrbs 0 ras_tot 1 rras_tot 0 to_top 1
+rest ras 1 rest rras 0 rbs -1 rrbs 0 
+ras 1 rras 0 rbs -1 rrbs 0 ras_tot 1 rras_tot 0 to_top 1
+rest ras 1 rest rras 0 rbs -1 rrbs 0 
+ras 1 rras 0 rbs -1 rrbs 0 ras_tot 1 rras_tot 0 to_top 1
+rest ras 1 rest rras 0 rbs -1 rrbs 0 
+ras 1 rras 0 rbs -1 rrbs 0 ras_tot 1 rras_tot 0 to_top 1
+rest ras 1 rest rras 0 rbs -1 rrbs 0 
+ras 1 rras 0 rbs -1 rrbs 0 ras_tot 1 rras_tot 0 to_top 1
+rest ras 1 rest rras 0 rbs -1 rrbs 0 
+ras 1 rras 0 rbs -1 rrbs 0 ras_tot 1 rras_tot 0 to_top 1
+rest ras 1 rest rras 0 rbs -1 rrbs 0 
+ras 1 rras 0 rbs -1 rrbs 0 ras_tot 1 rras_tot 0 to_top 1
+rest ras 1 rest rras 0 rbs -1 rrbs 0 
+ras 1 rras 0 rbs -1 rrbs 0 ras_tot 1 rras_tot 0 to_top 1
+rest ras 1 rest rras 0 rbs -1 rrbs 0 
+ras 1 rras 0 rbs -1 rrbs 0 ras_tot 1 rras_tot 0 to_top 1
+rest ras 1 rest rras 0 rbs -1 rrbs 0 
+ras 1 rras 0 rbs -1 rrbs 0 ras_tot 1 rras_tot 0 to_top 1
+rest ras 1 rest rras 0 rbs -1 rrbs 0 
+ras 1 rras 0 rbs -1 rrbs 0 ras_tot 1 rras_tot 0 to_top 1
+rest ras 1 rest rras 0 rbs -1 rrbs 0 
+ras 0 rpa
+pa
+pa
+pa
+pa
+pa
+pa
+pa
+pa
+pa
+pa
+pa
+pa
+pa
+pa
+pa
+pa
+pa
+pa
+pa
+pa
+pa
+pa
+pa
+pa
+pa
+pa
+pa
+pa
+pa
+pa
+pa
+pa
+pa
+pa
+pa
+pa
+pa
+ra
+pa
+ra
+pa
+ra
+pa
+ra
+pa
+ra
+pa
+ras 0 rbs -1 rrbs 0 ras_tot 0 rras_tot 0 to_top 1
+rest ras 1 rest rras 0 rbs -1 rrbs 0 
+ras 0 rras 0 rbs -1 rrbs 0 ras_tot 0 rras_tot 0 to_top 1
+rest ras 0 rest rras 0 rbs -1 rrbs 0 
+ras 0 rras 0 rbs -1 rrbs 0 ras_tot 0 rras_tot 0 to_top 1
+rest ras 0 rest rras 0 rbs -1 rrbs 0 
+ras 0 rras 0 rbs -1 rrbs 0 ras_tot 0 rras_tot 0 to_top 1
+rest ras 0 rest rras 0 rbs -1 rrbs 0 
+ras 0 rras 0 rbs -1 rrbs 0 ras_tot 0 rras_tot 0 to_top 1
+rest ras 0 rest rras 0 rbs -1 rrbs 0 
+ras 0 rras 0 rbs -1 rrbs 0 ras_tot 0 rras_tot 0 to_top 1
+rest ras 0 rest rras 0 rbs -1 rrbs 0 
+ras 0 rras 0 rbs -1 rrbs 0 ras_tot 0 rras_tot 0 to_top 1
+rest ras 0 rest rras 0 rbs -1 rrbs 0 
+ras 0 rras 0 rbs -1 rrbs 0 ras_tot 0 rras_tot 0 to_top 1
+rest ras 0 rest rras 0 rbs -1 rrbs 0 
+ras 0 rras 0 rbs -1 rrbs 0 ras_tot 0 rras_tot 0 to_top 1
+rest ras 0 rest rras 0 rbs -1 rrbs 0 
+ras 0 rras 0 rbs -1 rrbs 0 ras_tot 0 rras_tot 0 to_top 1
+rest ras 0 rest rras 0 rbs -1 rrbs 0 
+ras 0 rras 0 rbs -1 rrbs 0 ras_tot 0 rras_tot 0 to_top 1
+rest ras 0 rest rras 0 rbs -1 rrbs 0 
+ras 0 rras 0 rbs -1 rrbs 0 ras_tot 0 rras_tot 0 to_top 1
+rest ras 0 rest rras 0 rbs -1 rrbs 0 
+ras 0 rras 0 rbs -1 rrbs 0 ras_tot 0 rras_tot 0 to_top 1
+rest ras 0 rest rras 0 rbs -1 rrbs 0 
+ras 0 rras 0 rbs -1 rrbs 0 ras_tot 0 rras_tot 0 to_top 1
+rest ras 0 rest rras 0 rbs -1 rrbs 0 
+ras 0 rras 0 rbs -1 rrbs 0 ras_tot 0 rras_tot 0 to_top 1
+rest ras 0 rest rras 0 rbs -1 rrbs 0 
+ras 0 rras 0 rbs -1 rrbs 0 ras_tot 0 rras_tot 0 to_top 1
+rest ras 0 rest rras 0 rbs -1 rrbs 0 
+ras 0 rras 0 rbs -1 rrbs 0 ras_tot 0 rras_tot 0 to_top 1
+rest ras 0 rest rras 0 rbs -1 rrbs 0 
+ras 0 rras 0 rbs -1 rrbs 0 ras_tot 0 rras_tot 0 to_top 1
+rest ras 0 rest rras 0 rbs -1 rrbs 0 
+ras 0 rras 0 rbs -1 rrbs 0 ras_tot 0 rras_tot 0 to_top 1
+rest ras 0 rest rras 0 rbs -1 rrbs 0 
+ras 0 rras 0 rbs -1 rrbs 0 ras_tot 0 rras_tot 0 to_top 1
+rest ras 0 rest rras 0 rbs -1 rrbs 0 
+ras 0 rras 0 rbs -1 rrbs 0 ras_tot 0 rras_tot 0 to_top 1
+rest ras 0 rest rras 0 rbs -1 rrbs 0 
+ras 0 rras 0 rbs -1 rrbs 0 ras_tot 0 rras_tot 0 to_top 1
+rest ras 0 rest rras 0 rbs -1 rrbs 0 
+ras 0 rras 0 rbs -1 rrbs 0 ras_tot 0 rras_tot 0 to_top 1
+rest ras 0 rest rras 0 rbs -1 rrbs 0 
+ras 0 rras 0 rbs -1 rrbs 0 ras_tot 0 rras_tot 0 to_top 1
+rest ras 0 rest rras 0 rbs -1 rrbs 0 
+ras 0 rras 0 rbs -1 rrbs 0 ras_tot 0 rras_tot 0 to_top 1
+rest ras 0 rest rras 0 rbs -1 rrbs 0 
+ras 0 rras 0 rbs -1 rrbs 0 ras_tot 0 rras_tot 0 to_top 1
+rest ras 0 rest rras 0 rbs -1 rrbs 0 
+ras 0 rras 0 rbs -1 rrbs 0 ras_tot 0 rras_tot 0 to_top 1
+rest ras 0 rest rras 0 rbs -1 rrbs 0 
+ras 0 rras 0 rbs -1 rrbs 0 ras_tot 0 rras_tot 0 to_top 1
+rest ras 0 rest rras 0 rbs -1 rrbs 0 
+ras 0 rras 0 rbs -1 rrbs 0 ras_tot 0 rras_tot 0 to_top 1
+rest ras 0 rest rras 0 rbs -1 rrbs 0 
+ras 0 rras 0 rbs -1 rrbs 0 ras_tot 0 rras_tot 0 to_top 1
+rest ras 0 rest rras 0 rbs -1 rrbs 0 
+ras 0 rras 0 rbs -1 rrbs 0 ras_tot 0 rras_tot 0 to_top 1
+rest ras 0 rest rras 0 rbs -1 rrbs 0 
+ras 0 rras 0 rbs -1 rrbs 0 ras_tot 0 rras_tot 0 to_top 1
+rest ras 0 rest rras 0 rbs -1 rrbs 0 
+ras 0 rras 0 rbs -1 rrbs 0 ras_tot 0 rras_tot 0 to_top 1
+rest ras 0 rest rras 0 rbs -1 rrbs 0 
+ras 0 rras 0 rbs -1 rrbs 0 ras_tot 0 rras_tot 0 to_top 1
+rest ras 0 rest rras 0 rbs -1 rrbs 0 
+ras 0 rras 0 rbs -1 rrbs 0 ras_tot 0 rras_tot 0 to_top 1
+rest ras 0 rest rras 0 rbs -1 rrbs 0 
+ras 0 rras 0 rbs -1 rrbs 0 ras_tot 0 rras_tot 0 to_top 1
+rest ras 0 rest rras 0 rbs -1 rrbs 0 
+ras 0 rras 0 rbs -1 rrbs 0 ras_tot 0 rras_tot 0 to_top 1
+rest ras 0 rest rras 0 rbs -1 rrbs 0 
+ras 0 rras 0 rbs -1 rrbs 0 ras_tot 0 rras_tot 0 to_top 1
+rest ras 0 rest rras 0 rbs -1 rrbs 0 
+ras 1 rras 0 rbs -1 rrbs 0 ras_tot 1 rras_tot 0 to_top 1
+rest ras 0 rest rras 0 rbs -1 rrbs 0 
+ras 1 rras 0 rbs -1 rrbs 0 ras_tot 1 rras_tot 0 to_top 1
+rest ras 1 rest rras 0 rbs -1 rrbs 0 
+ras 1 rras 0 rbs -1 rrbs 0 ras_tot 1 rras_tot 0 to_top 1
+rest ras 1 rest rras 0 rbs -1 rrbs 0 
+ras 1 rras 0 rbs -1 rrbs 0 ras_tot 1 rras_tot 0 to_top 1
+rest ras 1 rest rras 0 rbs -1 rrbs 0 
+ras 1 rras 0 rbs -1 rrbs 0 ras_tot 1 rras_tot 0 to_top 1
+rest ras 1 rest rras 0 rbs -1 rrbs 0 
+ras 1 rras 0 rbs 1rr
+pa
+pa
+ rrbs -1 ras_tot 1 rras_tot 0 to_top 1
+rest ras 1 rest rras 0 rbs 1 rrbs -1 
+ras 0 rras 2 rbs 0 rrbs -1 ras_tot 0 rras_tot 2 to_top 1
+rest ras 1 rest rras 0 rbs 0 rrbs -1 

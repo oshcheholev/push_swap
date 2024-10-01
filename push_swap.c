@@ -15,24 +15,24 @@
 int	main(int argc, char **argv)
 {
 	// int *arr;
-	int i;
-	int j;
-	char **if_arr;
+	// int i;
+	// int j;
+//	char **if_arr;
 	t_ps	ps;
 
 	ps.opers = 0;
-	if_arr = NULL;
+//	if_arr = NULL;
 	ps.stack_a = NULL;
 	ps.stack_b = NULL;
 	
-	i = 0;
-	j = 0;
+//	i = 0;
+//	j = 0;
 	ps.a_len = argc - 1;
 	ps.b_len = 0;
 	
 	arr_or_not(&ps, argc, argv);
 	ps.stack_b = NULL;
-	i = 0;
+//	i = 0;
 	// while (i < ps.a_len)
 	// {
 	// 	printf("1AAAAAAAAAAAA %d\n", ps.stack_a[i].value);
@@ -42,14 +42,16 @@ int	main(int argc, char **argv)
 	//my_sort(&ps);
 //	temp_sort_arr(&ps);
 	assign_place(&ps);
-	test_print(&ps);
+	ps.middle = ps.a_len / 2;
+
+//	test_print(&ps);
 //	push_back(&ps);
 //	find_element(&ps, 0);
 //	start_sort(&ps);
 //	test(&ps);
 	new_sort(&ps);	
-		
-	printf("opers: %d\n", ps.opers);
+//	print_stack(&ps);		
+//	printf("opers: %d\n", ps.opers);
 
 	free(ps.stack_a);
 	free(ps.stack_b);

@@ -35,12 +35,12 @@ void test_print(t_ps *ps)
 
 void err_exit(t_ps *ps, char *msg)
 {
-	int i;
+	// int i;
 
-	i = 0;
-	write(1, "Error 1\n", 8);
-	printf("%s\n", msg);
-	
+	// i = 0;
+	write(2, "Error\n", 6);
+//	printf("%s\n", msg);
+	(void)msg;	
 	if (ps->stack_a)
 	{
 		free(ps->stack_a);
@@ -53,11 +53,11 @@ void err_exit(t_ps *ps, char *msg)
 	
 }
 
-int	ft_atoi_new(const char *nptr, t_ps *ps)
+long int	ft_atoi_new(const char *nptr, t_ps *ps)
 {
 	int	i;
 	int	sign;
-	int	res;
+	long int	res;
 
 	i = 0;
 	res = 0;
@@ -85,11 +85,11 @@ int	ft_atoi_new(const char *nptr, t_ps *ps)
 		i++;
 	while (nptr[i] >= '0' && nptr[i] <= '9')
 	{
-		if (sign == 1 && res > (INT_MAX - (nptr[i] - '0')) / 10)
-			err_exit(ps, "atoi5");
-		if (sign == -1 && res > (INT_MAX - (nptr[i] - '0')) / 10)
-			err_exit(ps, "atoi6");
 		res = res * 10 + nptr[i] - '0';
+		if (sign == 1 && res > INT_MAX)
+			err_exit(ps, "atoi5");
+		if (sign == -1 && res < INT_MIN)
+			err_exit(ps, "atoi6");
 //		printf("res %d\n", res);
 		i++;
 	}
@@ -129,7 +129,7 @@ void check_dup(t_ps *ps)
 	int j;
 	
 	i = 0;
-	while (i < ps->a_len - 1)
+	while (i < ps->a_len)
 	{
 		j = i + 1;
 		while(j < ps->a_len)
@@ -169,6 +169,22 @@ void	process_input(t_ps *ps, char *str)
 	free(array);
 }
 
+void check_if_sorted(t_ps *ps)
+{
+	int i;
+	
+	i = 0;
+	while (i < ps->a_len - 1)
+	{
+		if(ps->stack_a[i].value > ps->stack_a[i + 1].value)
+			return ;
+		i++;
+	}
+		free(ps->stack_a);
+		free(ps->stack_b);
+		exit (0);
+}
+
 void arr_or_not(t_ps *ps, int argc, char **argv)
 {
 	int i;
@@ -190,7 +206,8 @@ void arr_or_not(t_ps *ps, int argc, char **argv)
 		}
 	}
 	i = 0;
-	printf("sss %d \n", ps->a_len);
+//	printf("sss %d \n", ps->a_len);
 //	test_print(ps);
 	check_dup(ps);
+	check_if_sorted(ps);
 }

@@ -75,6 +75,23 @@ int find_max(t_ps *ps)
 	return (res);
 }
 
+void sort_4(t_ps *ps)
+{
+	int min;
+
+	min = find_min(ps);
+	while (ps->a_len > 3)
+	{
+		if (ps->stack_a[0].place == min)
+			pb(ps);
+		else
+			ra(ps);
+	}
+
+	sort_3(ps);
+	pa(ps);
+}
+
 void sort_5(t_ps *ps)
 {
 	int min;
@@ -94,7 +111,6 @@ void sort_5(t_ps *ps)
 
 	sort_3(ps);
 	// printf("2\n");
-	// print_stack(ps);
 	pa(ps);
 	pa(ps);
 	if (ps->stack_a[0].place > ps->stack_a[1].place)
@@ -104,7 +120,39 @@ void sort_5(t_ps *ps)
 		sa(ps);
 		ra(ps);
 	}
-	print_stack(ps);
+//	print_stack(ps);
 //	 printf("op 5 %d\n", ps->opers);
+//	print_stack(ps);
 
 }
+
+void sort_small(t_ps *ps)
+{
+	if (ps->a_len == 1)
+		return ;
+	if (ps->a_len == 2)
+	{
+		if (ps->stack_a[0].value > ps->stack_a[1].value)
+			sa(ps);
+	}
+	if (ps->a_len == 3)
+		sort_3(ps);
+	if (ps->a_len == 4)
+		sort_4(ps);
+	if (ps->a_len == 5)
+		sort_5(ps);
+	if (ps->a_len > 5)
+	{
+		first_move_to_b(ps);
+		ps->first_move = 1;
+	// put_all_to_b(ps);
+	sort_5(ps);
+	while(ps->b_len > 0)
+	{
+		put_el_to_a(ps);
+	}
+		restore_a(ps);
+	}
+
+}
+

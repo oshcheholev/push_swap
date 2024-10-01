@@ -40,7 +40,7 @@ LIBFT_A	= ./libft/libft.a
 ${NAME}:	${OBJS}
 	make -C $(LIBFT)
 	# make -C $(PRINTF)
-	$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(PRINTF_A) $(LIBFT_A) -lmlx -lXext -lX11
+	$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(PRINTF_A) $(LIBFT_A)
 
 ${OBJS}:	%.o: %.c
 	${CC} ${CFLAGS} -c $< -o $@

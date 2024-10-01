@@ -385,6 +385,6 @@ void new_sort(t_ps *ps)
 
 	// move_back_to_a(ps);
 //	test_print(ps);
-restore_a(ps);
+//restore_a(ps);
 }
 

@@ -6,10 +6,11 @@
 /*   By: oshcheho <oshcheho@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 14:46:17 by oshcheho          #+#    #+#             */
-/*   Updated: 2024/10/01 15:34:11 by oshcheho         ###   ########.fr       */
+/*   Updated: 2024/10/01 17:14:55 by oshcheho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft/libft.h"
 #include "push_swap.h"
 
 void test_print(t_ps *ps)
@@ -33,18 +34,20 @@ void test_print(t_ps *ps)
 	printf("\n");
 }
 
-void err_exit(t_ps *ps, char *msg)
+void clean_arrs(t_ps *ps)
 {
 	int i;
-
+	
 	i = 0;
-	write(2, "Error\n", 6);
-//	printf("%s\n", msg);
-	(void)msg;	
 	if (ps->stack_a)
 	{
 		free(ps->stack_a);
 		ps->stack_a = NULL;
+	}
+	if (ps->stack_b)
+	{
+		free(ps->stack_b);
+		ps->stack_b = NULL;
 	}
 	if (ps->array)
 	{
@@ -55,12 +58,18 @@ void err_exit(t_ps *ps, char *msg)
 		}
 		free(ps->array);
 	}
-	
-	if (ps->stack_b)
-	{
-		free(ps->stack_b);
-		ps->stack_b = NULL;
-	}
+}
+
+
+void err_exit(t_ps *ps, char *msg)
+{
+	int i;
+
+	i = 0;
+	write(2, "Error\n", 6);
+//	printf("%s\n", msg);
+	(void)msg;
+	clean_arrs(ps);
 	exit (1);
 	
 }
@@ -122,7 +131,8 @@ int	check_input(char *str, t_ps *ps)
 		{
 			if (str[i] == ' ')
 				if (str[i + 1] == ' ' || str[i + 1] == '\0')
-					err_exit(ps, "ch1");
+//					err_exit(ps, "ch1");
+					i++;
 				else
 					word_count++;
 			else
@@ -197,20 +207,22 @@ void check_if_sorted(t_ps *ps)
 			return ;
 		i++;
 	}
-		free(ps->stack_a);
-		free(ps->stack_b);
-		exit (0);
+	clean_arrs(ps);
+	exit (0);
 }
 
 void arr_or_not(t_ps *ps, int argc, char **argv)
 {
 	int i;
-	
 	i = 0;
 	if (argc == 2)
-		process_input(ps, argv[1]);
+		if(ft_strlen(argv[1]) == 0)
+			err_exit(ps, "empty");
+		else
+			process_input(ps, argv[1]);
 	else if (argc == 1)
 		err_exit(ps, "arg");
+//		exit(0);
 	else
 	{
 		ps->stack_a = malloc(argc * sizeof(t_elem));

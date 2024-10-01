@@ -235,14 +235,14 @@ void restore_a(t_ps *ps)
 {
 	if(ps->to_top == 1)
 	{
-			if (ps->b_len > 1)
-			{
-				if(ps->stack_b[0].place == ps->stack_a[0].place - 1)
-				{
-					pa(ps);
+			// if (ps->b_len > 1)
+			// {
+			// 	if(ps->stack_b[0].place == ps->stack_a[0].place - 1)
+			// 	{
+			// 		pa(ps);
 					
-				}
-			}
+			// 	}
+			// }
 		while(ps->ras_total > 0 && ps->rrbs > 0)
 		{
 				rrr(ps);
@@ -260,11 +260,11 @@ void restore_a(t_ps *ps)
 		ra(ps);
 		// if (ps->b_len > 1)
 		// {
-			// while(ps->stack_b[0].place == ps->stack_a[ps->a_len - 1].place + 1)
-			// {
-			// 	pa(ps);
-			// 	ra(ps);
-			// }
+		// 	if(ps->stack_b[0].place == ps->stack_a[ps->a_len - 1].place + 1)
+		// 	{
+		// 		pa(ps);
+		// 		rra(ps);
+		// 	}
 		// }
 		while(ps->rras_total > 0 && ps->rbs > 0)
 		{
@@ -385,5 +385,6 @@ void new_sort(t_ps *ps)
 
 	// move_back_to_a(ps);
 //	test_print(ps);
+restore_a(ps);
 }
 

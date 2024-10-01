@@ -6,7 +6,7 @@
 /*   By: oshcheho <oshcheho@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 14:10:56 by oshcheho          #+#    #+#             */
-/*   Updated: 2024/09/27 15:55:40 by oshcheho         ###   ########.fr       */
+/*   Updated: 2024/10/01 15:30:39 by oshcheho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,9 @@ int	*create_temp_arr(t_ps *ps)
 	res = malloc(ps->a_len * sizeof(int));
 	if (!res)
 		return (free(res), NULL);
-	while (i < ps->a_len)
+//printf("bbb %d\n", ps->a_len);
+	
+	while (i < ps->a_len - 1)
 	{
 		res[i] = ps->stack_a[i].value;
 		i++;
@@ -48,7 +50,7 @@ int *temp_sort_arr(t_ps *ps)
 	res = create_temp_arr(ps);
 	if (!res)
 		return (free(res), NULL);
-	i = ps->a_len - 1;
+	i = ps->a_len - 2;
 	while (i > 0)
 	{
 		j = 0;
@@ -100,9 +102,9 @@ void assign_place(t_ps *ps)
 	arr = temp_sort_arr(ps);
 	if (!arr)
 		return (free(arr));
-	while(i < ps->a_len)
+	while(i < ps->a_len - 1)
 	{
-		while(j < ps->a_len)
+		while(j < ps->a_len - 1)
 		{
 			if (ps->stack_a[j].value == arr[i])
 				ps->stack_a[j].place = i;

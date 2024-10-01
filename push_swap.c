@@ -6,7 +6,7 @@
 /*   By: oshcheho <oshcheho@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 14:44:56 by oshcheho          #+#    #+#             */
-/*   Updated: 2024/09/27 16:16:13 by oshcheho         ###   ########.fr       */
+/*   Updated: 2024/10/01 15:35:03 by oshcheho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int	main(int argc, char **argv)
 {
 	// int *arr;
-	// int i;
+	int i;
 	// int j;
 //	char **if_arr;
 	t_ps	ps;
@@ -24,8 +24,9 @@ int	main(int argc, char **argv)
 //	if_arr = NULL;
 	ps.stack_a = NULL;
 	ps.stack_b = NULL;
+	ps.array = NULL;
 	
-//	i = 0;
+	i = 0;
 //	j = 0;
 	ps.a_len = argc - 1;
 	ps.b_len = 0;
@@ -55,6 +56,14 @@ int	main(int argc, char **argv)
 
 	free(ps.stack_a);
 	free(ps.stack_b);
+	if (ps.array)
+	while (ps.array[i])
+	{
+		free(ps.array[i]);
+		i++;
+	}
+	free(ps.array);
+
 
 //	arr = process_input(argv[1]);
 // 	while (i < argc - 1)

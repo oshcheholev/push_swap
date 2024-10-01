@@ -6,7 +6,7 @@
 /*   By: oshcheho <oshcheho@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 15:03:54 by oshcheho          #+#    #+#             */
-/*   Updated: 2024/09/27 15:48:42 by oshcheho         ###   ########.fr       */
+/*   Updated: 2024/10/01 15:04:45 by oshcheho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,7 @@ typedef struct s_ps
 	int		max;
 	int		a_len;
 	int		b_len;
+	char	**array;
 	t_elem	*stack_a;
 	t_elem	*stack_b;
 }			t_ps;

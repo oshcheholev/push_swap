@@ -6,7 +6,7 @@
 /*   By: oshcheho <oshcheho@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 14:46:17 by oshcheho          #+#    #+#             */
-/*   Updated: 2024/09/27 15:52:01 by oshcheho         ###   ########.fr       */
+/*   Updated: 2024/10/01 15:34:11 by oshcheho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,19 +35,31 @@ void test_print(t_ps *ps)
 
 void err_exit(t_ps *ps, char *msg)
 {
-	// int i;
+	int i;
 
-	// i = 0;
+	i = 0;
 	write(2, "Error\n", 6);
 //	printf("%s\n", msg);
 	(void)msg;	
 	if (ps->stack_a)
 	{
 		free(ps->stack_a);
+		ps->stack_a = NULL;
 	}
+	if (ps->array)
+	{
+		while (ps->array[i])
+		{
+			free(ps->array[i]);
+			i++;
+		}
+		free(ps->array);
+	}
+	
 	if (ps->stack_b)
 	{
 		free(ps->stack_b);
+		ps->stack_b = NULL;
 	}
 	exit (1);
 	
@@ -86,9 +98,9 @@ long int	ft_atoi_new(const char *nptr, t_ps *ps)
 	while (nptr[i] >= '0' && nptr[i] <= '9')
 	{
 		res = res * 10 + nptr[i] - '0';
-		if (sign == 1 && res > INT_MAX)
+		if (sign == 1 && res > 2147483647)
 			err_exit(ps, "atoi5");
-		if (sign == -1 && res < INT_MIN)
+		if (sign == -1 && res < -2147483648)
 			err_exit(ps, "atoi6");
 //		printf("res %d\n", res);
 		i++;
@@ -105,6 +117,7 @@ int	check_input(char *str, t_ps *ps)
 	word_count = 0;
 	while (str[i] != '\0')
 	{
+//	printf("wc i%ci  +%d+\n", str[i], str[i + 1]);
 		if ((str[i] < '0' || str[i] > '9') && str[i] != '-' && str[i] != '+')
 		{
 			if (str[i] == ' ')
@@ -115,7 +128,7 @@ int	check_input(char *str, t_ps *ps)
 			else
 				err_exit(ps, "ch2");
 		}
-		if ((str[i] == '-' || str[i] == '-') && (str[i + 1] < '0' || str[i + 1] > '9'))
+		if ((str[i] == '-' || str[i] == '+') && (str[i + 1] < '0' || str[i + 1] > '9'))
 			err_exit(ps, "c3");
 		i++;
 	}
@@ -144,29 +157,33 @@ void check_dup(t_ps *ps)
 
 void	process_input(t_ps *ps, char *str)
 {
-	char **array;
+//	char **array;
 	int i;
 
 	i = 0;
 	ps->a_len = check_input(str, ps);
-	ps->stack_a = malloc(ps->a_len * sizeof(int));
+	ps->stack_a = malloc(ps->a_len * sizeof(t_elem));
 	if (!ps->stack_a)
 		err_exit(ps, "pr1");
-	array = ft_split(str, ' ');
-	if (!array)
-		return (free(array));
-	while (array[i] != NULL)
+//printf("aaa %d\n", ps->a_len);
+	ps->array = ft_split(str, ' ');
+	if (!ps->array)
+		return (free(ps->array), err_exit(ps, "split"));
+	while (ps->array[i] != NULL)
 	{
-		ps->stack_a[i].value = ft_atoi_new(array[i], ps);
+		ps->stack_a[i].value = ft_atoi_new(ps->array[i], ps);
+//printf("aaa %d\n", ps->stack_a[i].value);
+
+//		if (!)free(array[i]);
 		i++;
 	}
-	i = 0;
-	while (array[i])
-	{
-		free(array[i]);
-		i++;
-	}
-	free(array);
+	// i = 0;
+	// while (array[i])
+	// {
+	// 	free(array[i]);
+	// 	i++;
+	// }
+	// free(array);
 }
 
 void check_if_sorted(t_ps *ps)

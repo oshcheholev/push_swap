@@ -6,7 +6,7 @@
 /*   By: oshcheho <oshcheho@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 15:03:54 by oshcheho          #+#    #+#             */
-/*   Updated: 2024/10/01 15:04:45 by oshcheho         ###   ########.fr       */
+/*   Updated: 2024/10/02 16:52:55 by oshcheho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,18 +82,20 @@ typedef struct s_ps
 	t_elem	*stack_b;
 }			t_ps;
 
-void sort_small(t_ps *ps);
-void put_el_to_a(t_ps *ps);
-void restore_a(t_ps *ps);
-void print_stack(t_ps *ps);
-void new_sort(t_ps *ps);
-void first_move_to_b(t_ps *ps);
+void	check_if_sorted(t_ps *ps);
+void	check_char(t_ps *ps, char *nptr);
+void	clean_arrs(t_ps *ps);
+void	check_dup(t_ps *ps);
+void	sort_small(t_ps *ps);
+void	put_el_to_a(t_ps *ps);
+void	restore_a(t_ps *ps);
+void	print_stack(t_ps *ps);
+void	new_sort(t_ps *ps);
+void	first_move_to_b(t_ps *ps);
 void	test(t_ps *ps);
-void sort_5(t_ps *ps);
-void sort_3(t_ps *ps);
+void	sort_5(t_ps *ps);
+void	sort_3(t_ps *ps);
 void	main_sort(t_ps *ps);
-int		ft_atoi(const char *nptr);
-long int	ft_atoi_new(const char *nptr, t_ps *ps);
 void	process_input(t_ps *ps, char *str);
 void	arr_or_not(t_ps *ps, int argc, char **argv);
 void	test_print(t_ps *ps);
@@ -113,7 +115,8 @@ void	my_sort(t_ps *ps);
 int		*temp_sort_arr(t_ps *ps);
 void	assign_place(t_ps *ps);
 void	push_back(t_ps *ps);
-void find_element (t_ps *ps, int i);
-void start_sort(t_ps *ps);
+void	find_element (t_ps *ps, int i);
+void	start_sort(t_ps *ps);
+long int	ft_atoi_new(char *nptr, t_ps *ps);
 
 #endif

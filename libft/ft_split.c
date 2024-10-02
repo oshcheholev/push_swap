@@ -3,20 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oshcheho <oshcheho@student.42.fr>          +#+  +:+       +#+        */
+/*   By: oshcheho <oshcheho@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/12 10:57:06 by oshcheho          #+#    #+#             */
-/*   Updated: 2024/08/28 14:39:53 by oshcheho         ###   ########.fr       */
+/*   Updated: 2024/10/02 15:34:45 by oshcheho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static char	arr_size(char const *s, char c)
+static int	arr_size(char const *s, char c)
 {
-	size_t	i;
-	size_t	j;
-	size_t	res;
+	long long int	i;
+	long long int	j;
+	long long int	res;
 
 	i = 0;
 	j = 0;
@@ -45,7 +45,7 @@ static void	free_arr(size_t i, char **arr)
 	free(arr);
 }
 
-static char	*fill_line(char const *s, size_t len, char c)
+static char	*fill_line(char const *s, long long int len, char c)
 {
 	char	*res;
 	size_t	i;
@@ -92,9 +92,10 @@ static char	**split(char const *s, char **arr, char c, size_t arr_len)
 char	**ft_split(char const *s, char c)
 {
 	char	**arr;
-	size_t	arr_len;
+	int	arr_len;
 
 	arr_len = arr_size(s, c);
+
 	arr = malloc((arr_len + 1) * sizeof(char *));
 	if (!arr)
 		return (NULL);

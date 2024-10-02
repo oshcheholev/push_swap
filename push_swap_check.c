@@ -6,7 +6,7 @@
 /*   By: oshcheho <oshcheho@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 14:46:17 by oshcheho          #+#    #+#             */
-/*   Updated: 2024/10/01 17:14:55 by oshcheho         ###   ########.fr       */
+/*   Updated: 2024/10/02 15:03:48 by oshcheho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ void err_exit(t_ps *ps, char *msg)
 
 	i = 0;
 	write(2, "Error\n", 6);
-//	printf("%s\n", msg);
+	printf("%s\n", msg);
 	(void)msg;
 	clean_arrs(ps);
 	exit (1);
@@ -123,6 +123,9 @@ int	check_input(char *str, t_ps *ps)
 	int word_count;
 
 	i = 0;
+	if (str[i] == ' ')
+		if (str[i + 1] == ' ' || str[i + 1] == '\0')
+			err_exit(ps, "ch1");
 	word_count = 0;
 	while (str[i] != '\0')
 	{
@@ -130,11 +133,14 @@ int	check_input(char *str, t_ps *ps)
 		if ((str[i] < '0' || str[i] > '9') && str[i] != '-' && str[i] != '+')
 		{
 			if (str[i] == ' ')
-				if (str[i + 1] == ' ' || str[i + 1] == '\0')
+			{
+			 	//if (str[i + 1] == ' ')
 //					err_exit(ps, "ch1");
-					i++;
-				else
+			 	if (str[i + 1] != ' ' && str[i + 1] != '\0')
 					word_count++;
+				// 	i++;
+				// else
+			}
 			else
 				err_exit(ps, "ch2");
 		}
@@ -142,7 +148,7 @@ int	check_input(char *str, t_ps *ps)
 			err_exit(ps, "c3");
 		i++;
 	}
-	// printf("wc check  %d\n", word_count);
+//	printf("wc check  %d\n", word_count);
 	return (word_count + 1);
 }
 
@@ -152,11 +158,13 @@ void check_dup(t_ps *ps)
 	int j;
 	
 	i = 0;
-	while (i < ps->a_len)
+	while (i < ps->a_len - 1)
 	{
 		j = i + 1;
+//	printf("bbb %d  %d   %d\n", ps->a_len, ps->stack_a[i].value, ps->stack_a[j].value);
 		while(j < ps->a_len)
 		{
+//	printf("bbb %d  %d   %d\n", ps->a_len, ps->stack_a[i].value, ps->stack_a[j].value);
 			if (ps->stack_a[i].value == ps->stack_a[j].value)
 				err_exit(ps, "d1");
 			j++;
@@ -181,8 +189,9 @@ void	process_input(t_ps *ps, char *str)
 		return (free(ps->array), err_exit(ps, "split"));
 	while (ps->array[i] != NULL)
 	{
-		ps->stack_a[i].value = ft_atoi_new(ps->array[i], ps);
-//printf("aaa %d\n", ps->stack_a[i].value);
+		if (ps->array[i][0] != '\0')
+			ps->stack_a[i].value = ft_atoi_new(ps->array[i], ps);
+//		printf("aaa %d\n", ps->stack_a[i].value);
 
 //		if (!)free(array[i]);
 		i++;

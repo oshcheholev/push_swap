@@ -6,11 +6,12 @@
 /*   By: oshcheho <oshcheho@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 14:44:56 by oshcheho          #+#    #+#             */
-/*   Updated: 2024/10/01 15:35:03 by oshcheho         ###   ########.fr       */
+/*   Updated: 2024/10/02 15:35:21 by oshcheho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+#include <string.h>
 
 int	main(int argc, char **argv)
 {
@@ -20,6 +21,7 @@ int	main(int argc, char **argv)
 //	char **if_arr;
 	t_ps	ps;
 
+//	printf("aaaaaa  %zu\n", strlen(argv[1]));
 	ps.opers = 0;
 //	if_arr = NULL;
 	ps.stack_a = NULL;
@@ -33,6 +35,7 @@ int	main(int argc, char **argv)
 	
 	arr_or_not(&ps, argc, argv);
 	ps.stack_b = NULL;
+	
 //	i = 0;
 	// while (i < ps.a_len)
 	// {

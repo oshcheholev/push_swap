@@ -6,7 +6,7 @@
 /*   By: oshcheho <oshcheho@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 16:45:12 by oshcheho          #+#    #+#             */
-/*   Updated: 2024/10/02 16:54:09 by oshcheho         ###   ########.fr       */
+/*   Updated: 2024/10/03 15:45:24 by oshcheho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,10 +59,10 @@ void	check_char(t_ps *ps, char *nptr)
 	if (nptr[0] == ' ')
 		if (nptr[1] == ' ' || nptr[1] == '\0')
 			err_exit(ps, "ch1");
-	while (i < (int)ft_strlen(nptr))
+	while (nptr[i] != '\0')
 	{
 		if ((nptr[i] < '0' || nptr[i] > '9') && nptr[i] != '-'
-			&& nptr[i] != '+')
+			&& nptr[i] != '+' && nptr[i] != ' ')
 			err_exit(ps, "atoi1");
 		if ((nptr[i] >= '0' && nptr[i] <= '9') && (nptr[i + 1] == '-'
 				|| nptr[i + 1] == '+'))

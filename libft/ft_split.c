@@ -6,7 +6,7 @@
 /*   By: oshcheho <oshcheho@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/12 10:57:06 by oshcheho          #+#    #+#             */
-/*   Updated: 2024/10/02 15:34:45 by oshcheho         ###   ########.fr       */
+/*   Updated: 2024/10/03 15:00:16 by oshcheho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,10 +92,9 @@ static char	**split(char const *s, char **arr, char c, size_t arr_len)
 char	**ft_split(char const *s, char c)
 {
 	char	**arr;
-	int	arr_len;
+	int		arr_len;
 
 	arr_len = arr_size(s, c);
-
 	arr = malloc((arr_len + 1) * sizeof(char *));
 	if (!arr)
 		return (NULL);

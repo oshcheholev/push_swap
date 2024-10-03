@@ -6,7 +6,7 @@
 /*   By: oshcheho <oshcheho@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 14:46:17 by oshcheho          #+#    #+#             */
-/*   Updated: 2024/10/02 16:57:12 by oshcheho         ###   ########.fr       */
+/*   Updated: 2024/10/03 17:13:37 by oshcheho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,14 @@
 
 long int	ft_atoi_new(char *nptr, t_ps *ps)
 {
-	int			i;
+	static int	i = 0;
 	int			sign;
 	long int	res;
 
-	i = 0;
 	res = 0;
 	sign = 1;
 	i = 0;
+	check_char(ps, nptr);
 	if (nptr[i] == '-')
 	{
 		sign = -1;
@@ -83,7 +83,6 @@ void	process_input(t_ps *ps, char *str)
 		return (free(ps->array), err_exit(ps, "split"));
 	while (ps->array[i] != NULL)
 	{
-		check_char(ps, ps->array[i]);
 		if (ps->array[i][0] != '\0')
 			ps->stack_a[i].value = ft_atoi_new(ps->array[i], ps);
 		i++;
@@ -96,7 +95,10 @@ void	arr_or_not(t_ps *ps, int argc, char **argv)
 
 	i = 0;
 	if (argc == 2)
+	{
+		check_char(ps, argv[1]);
 		process_input(ps, argv[1]);
+	}
 	else if (argc == 1)
 		exit(0);
 	else
@@ -113,4 +115,30 @@ void	arr_or_not(t_ps *ps, int argc, char **argv)
 	i = 0;
 	check_dup(ps);
 	check_if_sorted(ps);
+}
+
+void	sort_small(t_ps *ps)
+{
+	if (ps->a_len == 1)
+		return ;
+	if (ps->a_len == 2)
+	{
+		if (ps->stack_a[0].value > ps->stack_a[1].value)
+			sa(ps);
+	}
+	if (ps->a_len == 3)
+		sort_3(ps);
+	if (ps->a_len == 4)
+		sort_4(ps);
+	if (ps->a_len == 5)
+		sort_5(ps);
+	if (ps->a_len > 5)
+	{
+		first_move_to_b(ps);
+		ps->first_move = 1;
+		sort_5(ps);
+		while (ps->b_len > 0)
+			put_el_to_a(ps);
+		restore_a(ps);
+	}
 }

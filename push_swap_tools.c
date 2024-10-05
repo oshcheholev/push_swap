@@ -6,7 +6,7 @@
 /*   By: oshcheho <oshcheho@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 14:10:56 by oshcheho          #+#    #+#             */
-/*   Updated: 2024/10/03 15:37:19 by oshcheho         ###   ########.fr       */
+/*   Updated: 2024/10/03 17:30:31 by oshcheho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,12 +94,12 @@ void	move_half_to_b(t_ps *ps)
 		ps->middle = ps->a_len / 2;
 	else
 		ps->middle = ps->a_len / 2 + 1;
-	while (ps->a_len > ps->middle + 3)
+	while (ps->a_len > ps->middle + 2)
 	{
-		if (ps->stack_a[0].place < len / 4 - 1
-			|| ps->stack_a[0].place > len - len / 4 + 1)
+		if (ps->stack_a[0].place < len / 4
+			|| ps->stack_a[0].place > len - len / 4)
 		{
-			if (ps->stack_a[0].place < len / 4 - 1)
+			if (ps->stack_a[0].place < len / 4)
 				pb(ps);
 			else
 			{

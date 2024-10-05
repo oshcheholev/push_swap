@@ -6,7 +6,7 @@
 /*   By: oshcheho <oshcheho@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 15:03:54 by oshcheho          #+#    #+#             */
-/*   Updated: 2024/10/03 15:35:19 by oshcheho         ###   ########.fr       */
+/*   Updated: 2024/10/03 19:21:51 by oshcheho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,14 +36,6 @@ typedef struct s_elem
 	int		m_m;
 }			t_elem;
 
-typedef struct s_move
-{
-	int		ras;
-	int		rbs;
-	int		rras;
-	int		rrbs;
-}			t_move;		
-
 typedef struct s_ps
 {
 	int		ras;
@@ -54,7 +46,6 @@ typedef struct s_ps
 	int		rras_total;
 	int		to_top;
 	int		first_move;
-
 	int		to_move;
 	int		middle;
 	int		opers;

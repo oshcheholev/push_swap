@@ -6,7 +6,7 @@
 /*   By: oshcheho <oshcheho@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 14:46:17 by oshcheho          #+#    #+#             */
-/*   Updated: 2024/10/03 17:13:37 by oshcheho         ###   ########.fr       */
+/*   Updated: 2024/10/04 15:12:42 by oshcheho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 long int	ft_atoi_new(char *nptr, t_ps *ps)
 {
-	static int	i = 0;
+	int			i;
 	int			sign;
 	long int	res;
 
@@ -23,14 +23,13 @@ long int	ft_atoi_new(char *nptr, t_ps *ps)
 	i = 0;
 	check_char(ps, nptr);
 	if (nptr[i] == '-')
-	{
 		sign = -1;
+	if (nptr[i] == '+' || nptr[i] == '-')
 		i++;
-	}
-	else if (nptr[i] == '+')
-		i++;
-	while (nptr[i] >= '0' && nptr[i] <= '9')
+	while (nptr[i] != '\0')
 	{
+		if (nptr[i] < '0' || nptr[i] > '9')
+			err_exit(ps, "char err");
 		res = res * 10 + nptr[i] - '0';
 		if (sign == 1 && res > 2147483647)
 			err_exit(ps, "atoi5");
@@ -41,25 +40,23 @@ long int	ft_atoi_new(char *nptr, t_ps *ps)
 	return (res * sign);
 }
 
-int	check_input(char *str, t_ps *ps)
+int	count_words(char *str, t_ps *ps)
 {
 	int	i;
 	int	word_count;
 
 	i = 0;
 	word_count = 0;
+	if (str[0] == ' ')
+		err_exit(ps, "space");
 	while (str[i] != '\0')
 	{
-		if ((str[i] < '0' || str[i] > '9') && str[i] != '-'
-			&& str[i] != '+')
+		if (str[i] == ' ')
 		{
-			if (str[i] == ' ')
-			{
-				if (str[i + 1] != ' ' && str[i + 1] != '\0')
-					word_count++;
-			}
-			else
-				err_exit(ps, "ch2");
+			if ((str[i + 1] >= '0' && str[i + 1] <= '9')
+				|| str[i + 1] == '\0' || str[i + 1] == '-'
+				|| str[i + 1] == '+')
+				word_count++;
 		}
 		if ((str[i] == '-' || str[i] == '+')
 			&& (str[i + 1] < '0' || str[i + 1] > '9'))
@@ -69,12 +66,36 @@ int	check_input(char *str, t_ps *ps)
 	return (word_count + 1);
 }
 
+void	check_input(char *str, t_ps *ps)
+{
+	int	i;
+
+	i = 0;
+	while (str[i] != '\0')
+	{
+		if ((str[i] < '0' || str[i] > '9') && str[i] != '-'
+			&& str[i] != '+')
+		{
+			if (str[i] == ' ')
+			{
+				if ((str[i + 1] < '0' || str[i + 1] > '9')
+					&& str[i + 1] != '-' && str[i + 1] != '+')
+					err_exit(ps, "char");
+			}
+			else
+				err_exit(ps, "char2");
+		}
+		i++;
+	}
+}
+
 void	process_input(t_ps *ps, char *str)
 {
 	int	i;
 
 	i = 0;
-	ps->a_len = check_input(str, ps);
+	check_input(str, ps);
+	ps->a_len = count_words(str, ps);
 	ps->stack_a = malloc(ps->a_len * sizeof(t_elem));
 	if (!ps->stack_a)
 		err_exit(ps, "pr1");
@@ -115,30 +136,4 @@ void	arr_or_not(t_ps *ps, int argc, char **argv)
 	i = 0;
 	check_dup(ps);
 	check_if_sorted(ps);
-}
-
-void	sort_small(t_ps *ps)
-{
-	if (ps->a_len == 1)
-		return ;
-	if (ps->a_len == 2)
-	{
-		if (ps->stack_a[0].value > ps->stack_a[1].value)
-			sa(ps);
-	}
-	if (ps->a_len == 3)
-		sort_3(ps);
-	if (ps->a_len == 4)
-		sort_4(ps);
-	if (ps->a_len == 5)
-		sort_5(ps);
-	if (ps->a_len > 5)
-	{
-		first_move_to_b(ps);
-		ps->first_move = 1;
-		sort_5(ps);
-		while (ps->b_len > 0)
-			put_el_to_a(ps);
-		restore_a(ps);
-	}
 }
